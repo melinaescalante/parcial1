@@ -1,3 +1,6 @@
+<?php
+
+?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">LA CASA DEL LIBRO</a>
@@ -7,13 +10,13 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">QUIENES SOMOS</a>
+            <a class="nav-link" aria-current="page" href="index.php?view=quienesSomos">QUIENES SOMOS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">CATALOGO</a>
+            <a class="nav-link active" href="index.php?view=catalogo">CATALOGO</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">LOCALES</a>
+            <a class="nav-link" href="index.php?view=locales">LOCALES</a>
           </li>
         </ul>
         
