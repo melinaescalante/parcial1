@@ -13,7 +13,7 @@
             <a class="nav-link" aria-current="page" href="index.php?view=quienesSomos">QUIENES SOMOS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="index.php?view=catalogo">CATALOGO</a>
+            <a class="nav-link" href="index.php?view=catalogo">CATALOGO</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index.php?view=locales">LOCALES</a>
