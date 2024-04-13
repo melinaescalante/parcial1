@@ -1,5 +1,4 @@
 <?php
-require_once "content/php/libros.php";
 require_once "./index.php";
 if ($generoElegido != ""){
 $librosFiltrados = catalago_x_personajes($Libros, $generoElegido);
