@@ -12,7 +12,7 @@ $librosFiltrados = catalago_x_personajes($Libros, $generoElegido);
     <div class="contenedor-head">
         <h1 class="mt-5 mb-4 text-star col-12">Elegí tu libro</h1>
         <div class="form-container">
-            <form class="d-flex col-12 col-md-6 col-lg-4" role="search">
+            <form action="filtros.php" enctype="multipart/form-data" class="d-flex col-12 col-md-6 col-lg-4" role="search">
                 <input class="form-control me-2" type="search" placeholder="Ingrese ID" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
@@ -22,7 +22,7 @@ $librosFiltrados = catalago_x_personajes($Libros, $generoElegido);
         <a class="border-end text-center border-start p-2 " href="index.php?sec=romance&view=catalogo">Romance</a>
         <a class="border-end text-center p-2" href="index.php?sec=drama&view=catalogo
         ">Drama</a>
-        <a class="border-end text-center p-2" href="index.php?sec=fantasia&view=catalogo">Fantasia</a>
+        <a class="border-end text-center p-2" href="index.php?sec=fantasía&view=catalogo">Fantasía</a>
     </div>
 <?php
 foreach ($librosFiltrados as $key => $value) {
