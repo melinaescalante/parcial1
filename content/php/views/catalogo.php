@@ -6,7 +6,7 @@ $librosObjeto= (new Libro())->catalago();
 // $Libros=json_decode($jsonString,true);
 $Libros=$librosObjeto;
 if ($generoElegido != ""){
-$librosFiltrados = catalago_x_personajes($Libros, $generoElegido);
+$librosFiltrados = (new Libro())->catalago_x_personajes($generoElegido);
 }else {
     $librosFiltrados=$Libros;
 }
@@ -15,8 +15,8 @@ $librosFiltrados = catalago_x_personajes($Libros, $generoElegido);
     <div class="contenedor-head">
         <h1 class="mt-5 mb-4 text-star col-12">Elegí tu libro</h1>
         <div class="form-container">
-            <form action="filtros.php" enctype="multipart/form-data" class="d-flex col-12 col-md-6 col-lg-4" role="search">
-                <input class="form-control me-2" type="search" placeholder="Ingrese ID" aria-label="Search">
+            <form action="content/php/funciones.php" method="POST" class="d-flex col-12 col-md-6 col-lg-4" role="search">
+                <input class="form-control me-2" type="search" placeholder="Ingrese ID" aria-label="Search" id="code" name="code">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
         </div>

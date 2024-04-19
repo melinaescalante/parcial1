@@ -31,7 +31,28 @@ class Libro{
         // print_r($librosCatalogo);
         return $librosCatalogo;
     }
+    public function catalago_x_personajes($genero){
+        $LibrosTotal= $this->catalago();
+        $librosArray=[];
+        foreach ($LibrosTotal as $libro) {
+            if ($libro->genero==$genero){
+            $librosArray []= $libro; /*Manera acortada de array_push*/
+                
+            }
+        }
+        return $librosArray;
+    }
     
+    // public function buscar_x_id($id){
+    //     $LibrosTotal= $this->catalago();
+    //     foreach ($LibrosTotal as $libro) {
+    //     if ($libro->code==$id){
+    //        return $libro;
+                    
+    //         }
+        
+    //     }
+    //  }
     public function getPages()
     {
         return $this->pages;
