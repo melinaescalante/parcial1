@@ -28,8 +28,40 @@ class Libro{
             $librosCatalogo []= $libro;
 
         }
-        print_r($librosCatalogo);
+        // print_r($librosCatalogo);
         return $librosCatalogo;
     }
     
+    public function getPages()
+    {
+        return $this->pages;
+    }
+    public function getPrice()
+    {
+        return $this->price;
+    }
+    public function getPortada()
+    {
+        return $this->portada;
+    }
+    public function getSinopsis()
+    {
+        return $this->sinopsis;
+    }
+    public function getGenero()
+    {
+        return $this->genero;
+    }
+    public function getAutor()
+    {
+        return $this->Autor;
+    }
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+    public function getCode()
+    {
+        return $this->code;
+    }
 }
