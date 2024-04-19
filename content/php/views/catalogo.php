@@ -1,7 +1,10 @@
 <?php
 require_once "./index.php";
-$jsonString=file_get_contents("content/libros.json");
-$Libros=json_decode($jsonString,true);
+$librosObjeto= (new Libro())->catalago();
+
+// $jsonString=file_get_contents("content/libros.json");
+// $Libros=json_decode($jsonString,true);
+$Libros=$librosObjeto;
 if ($generoElegido != ""){
 $librosFiltrados = catalago_x_personajes($Libros, $generoElegido);
 }else {

@@ -1,6 +1,7 @@
 <?php 
 require_once "content/php/libros.php";
 require_once "content/html/header.php";
+require_once "content/class/libro.php";
 // $MyArray=json_encode($Libros);
 // echo $MyArray;
 
