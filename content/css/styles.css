@@ -1,4 +1,9 @@
-
+div.alert.alert-warning{
+margin-top:50px!important;
+margin-bottom:50px!important;
+height: 500px;
+color: aqua!important;
+}
 [type=button]{
    width: 100% !important;
    --bs-btn-color:darkcyan;

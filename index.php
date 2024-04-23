@@ -2,7 +2,6 @@
 require_once "content/php/libros.php";
 require_once "content/html/header.php";
 require_once "content/class/libro.php";
-require_once "content/php/funciones.php";
 // $MyArray=json_encode($Libros);
 // echo $MyArray;
 
@@ -24,7 +23,6 @@ if (isset( $_GET["code"] )){
     ?>
 </main>
 <?php require_once "content/html/footer.php"?>
-<script src="content/js/main.js" defer ></script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

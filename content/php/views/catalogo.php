@@ -10,6 +10,11 @@ $librosFiltrados = (new Libro())->catalago_x_personajes($generoElegido);
 }else {
     $librosFiltrados=$Libros;
 }
+// if (isset( $_GET["code"] )){
+//     $librosFiltrados=$Libros[$posicion];
+//     echo $Libros[$posicion]->$nombre;
+// }
+
 ?>
 <div class="container-fluid container-xxl row row-gap-5 column-gap-5 m-auto  justify-content-center">
     <div class="contenedor-head">
@@ -17,7 +22,7 @@ $librosFiltrados = (new Libro())->catalago_x_personajes($generoElegido);
         <div class="form-container">
             <form action="index.php" method="GET" class="d-flex col-12 col-md-6 col-lg-4" role="search">
                 <input class="form-control me-2" type="search" placeholder="Ingrese ID" aria-label="Search"  id="code" name="code" >
-                <input type="hidden" name="view" value="catalogo">
+                <input type="hidden" name="view" value="busqueda">
                 <input class="btn btn-outline-success" type="submit" value="Buscar">
             </form>
         </div>

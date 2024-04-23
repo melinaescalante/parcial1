@@ -1,4 +1,6 @@
 <?php
+require_once "content/php/views/busqueda.php";
+
 class Libro{
     protected $code;
     protected $nombre;
@@ -41,23 +43,35 @@ class Libro{
         }
         return $librosArray;
     }
-   public  function buscar_x_id($id){
+   public function buscar_x_id($id){
         $LibrosTotal=$this->catalago();
+        $posicion=-1;
         foreach ($LibrosTotal as $libro) {
             $idlibro=$libro->getCode();
-            // echo ." ";
+            $posicion+=1;
 
             if ($idlibro==$id){
-                echo $libro->nombre;
-                return $libro;  
+                $nameFound= $libro->nombre;
+                $imgFound=$libro->getPortada();
+                $sinopsisFound= $libro->getSinopsis();
+                $pagesFound= $libro->getPages();
+                $priceFound= $libro->getPrice();
+                $genreFound= $libro->getGenero();
+                $autorFound= $libro->getAutor();
+                createCardbyId($nameFound, $imgFound,$sinopsisFound,$pagesFound,$priceFound,$genreFound, $autorFound);
+                return ($libro);  
                 echo "<br>";
             }
             else{
-                echo " No se busco este id: ".$idlibro ;
-                echo "<br>";
+$msg="No coincide ni un ID con su busqueda. Lo lamentamos";
+                
+                createAnError($msg);
+                return;
             }
         }
+        
         $libro=null;
+        // return $posicion;
     }
     public function getPages()
     {
@@ -83,7 +97,7 @@ class Libro{
     {
         return $this->Autor;
     }
-    public function getNombre()
+    public function getNombre() 
     {
         return $this->nombre;
     }
