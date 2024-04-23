@@ -2,6 +2,7 @@
 require_once "content/php/libros.php";
 require_once "content/html/header.php";
 require_once "content/class/libro.php";
+require_once "content/php/funciones.php";
 // $MyArray=json_encode($Libros);
 // echo $MyArray;
 
@@ -9,7 +10,6 @@ require_once "content/class/libro.php";
 <body>
 <?php  
 require_once "content/html/nav.php";
-require_once "content/php/funciones.php";
 $generoElegido = isset( $_GET["sec"] ) ? $_GET["sec"] : "";
 $view= "";
 $view=( $_GET["view"] ) ? $_GET["view"] :$_GET["view"]="quienesSomos";
