@@ -10,16 +10,18 @@ require_once "content/php/funciones.php";
 <body>
 <?php  
 require_once "content/html/nav.php";
+
 $generoElegido = isset( $_GET["sec"] ) ? $_GET["sec"] : "";
-$view= "";
-$view=( $_GET["view"] ) ? $_GET["view"] :$_GET["view"]="quienesSomos";
+$view= isset( $_GET["view"] ) ? $_GET["view"] :$_GET["view"]="quienesSomos";
+if (isset( $_GET["code"] )){
+    $bookFound = (new Libro())->buscar_x_id( $_GET["code"]);
+}
+
 ?>
 <main>
     <?php 
     require_once "content/php/views/$view.php";
     ?>
-
-
 </main>
 <?php require_once "content/html/footer.php"?>
 <script src="content/js/main.js" defer ></script>
