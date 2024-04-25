@@ -1,9 +1,15 @@
-
+/* Estilos generales o cambiados de los valores default de bootstrap */
 nav{
-    height: 10vh;
-
+    min-height: 10vh;
+    
 }
-
+strong{
+    font-weight: none;
+   
+}
+em{
+    font-style: normal;
+}
 .navbar h1 a {
     background-image: url(http://localhost/parcial1/images/logo1.png) ;
     background-position: center;
@@ -13,39 +19,10 @@ nav{
     display: inline-block!important;
     height: 80px!important;
     width: 160px!important;
-
-}
-.locales form{
-    border:1px solid darkcyan;
-    border-radius: 8px;
-}
-.locales form p{
-    font-size: 1.5rem;
-    font-weight: 600;
+    
 }
 textarea{
     resize: none;
-}
-.card{
-    margin: 0;
-    padding: 0;
-    border-radius: 8px;
-}
-.locales h3{
-    font-size: 1.2rem;
-}
-.locales img{
-    border-radius: 8px;
-}
-.catalogo{
-    margin-bottom: 30px!important;
-}
-.producto .contenedor1 img{
-    width: 300px;
-    height: 460px;
-}
-.producto {
-    border-color: darkcyan !important;
 }
 nav a.nav-link:hover{
     color: darkcyan;
@@ -60,10 +37,7 @@ nav a.nav-link:hover{
     --bs-btn-hover-border-color:  darkcyan!important;
     --bs-btn-focus-shadow-rgb: 49,132,253;
     --bs-btn-active-color: #fff;
-    /* --bs-btn-active-bg: #0a58ca;
-    --bs-btn-active-border-color: #0a53be;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); */
-
+    
 }
 .btn.btn-outline-primary{
    width: 100% !important;
@@ -76,26 +50,74 @@ nav a.nav-link:hover{
    font-weight: 600;
 
 }
+.contenedor-head{
+    padding-left: 8%;
+}
+/* Estilos de la seccion catalogo */
+.catalogo{
+    margin-bottom: 30px!important;
+}
 
+.card{
+    --bs-card-border-color:rgb(174, 220, 220);
+}
+/* Estilos de la seccion de locales */
+.locales h3{
+    font-size: 1.2rem;
+}
+.locales img{
+    border-radius: 8px;
+}
+.locales form{
+    border:1px solid darkcyan;
+    border-radius: 8px;
+}
+.locales form p{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.card{
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
+}
+
+/* Estilos de los contenedor al filtrar por id */
+.producto .contenedor1 img{
+    width: 25vh;
+    height: 40vh;
+}
+.producto {
+    border-color: darkcyan !important;
+}
+/* Estilos de los filtros por generos */
 .filtros> a{
     color: gray;
     text-decoration: none;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-    
-}
 
+}
+.filtros a:hover{
+    font-weight:500;
+    color: darkcyan;
+}
 .filtros{text-align: center;
 }
-.card{
-    --bs-card-border-color:rgb(174, 220, 220);
+
+/* Estilos de la seccion alumna */
+.alumna a{
+    color: darkcyan;
 }
-.contenedor-head{
-    padding-left: 8%;
+.alumna a:hover{
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    background-color: darkcyan;
 }
+
+/* Estilos del footer */
 footer{
-    height: 10vh;
-    /* margin-top: 30px; */
+    min-height: 10vh;
     background-color: rgb(248 249 250);
 }
 footer ul{

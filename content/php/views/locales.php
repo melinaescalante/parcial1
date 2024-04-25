@@ -1,7 +1,7 @@
 <section class="locales">
   <div class="contaner-fluid container-xxl mt-5 mb-5">
     <div class="contenedorSucursal row justify-content-around align-items-center mt-4 mb-4">
-      
+  
       <h1 class="text-center mt-4 mb-4">Nuestras sucursales</h1>
       <div class="card mt-4 mb-4" style="width: 18rem;">
         <img src="images/sucursal1-casa-del-libro-centro.jpg" class="card-img-top img-card" alt="Sucursal casa del libro ubicado en el centro de Madrid">

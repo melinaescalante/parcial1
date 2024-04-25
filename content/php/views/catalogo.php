@@ -2,11 +2,11 @@
 require_once "./index.php";
 $librosObjeto= (new Libro())->catalago();
 
-// $jsonString=file_get_contents("content/libros.json");
-// $Libros=json_decode($jsonString,true);
 $Libros=$librosObjeto;
+$tituloGenero="";
 if ($generoElegido != ""){
-$librosFiltrados = (new Libro())->catalago_x_personajes($generoElegido);
+$librosFiltrados = (new Libro())->catalago_x_genero($generoElegido);
+$tituloGenero= ucwords($generoElegido);
 }else {
     $librosFiltrados=$Libros;
 }
@@ -32,10 +32,12 @@ $librosFiltrados = (new Libro())->catalago_x_personajes($generoElegido);
             <a class="border-end text-center p-2" href="index.php?sec=fantasía&view=catalogo">Fantasía</a>
             <a class="border-end text-center p-2" href="index.php?sec=thriller&view=catalogo">Thriller</a>
         </div>
+        <h2 class="text-center"><?=$tituloGenero;?></h2>    
         <?php
 foreach ($librosFiltrados as $value) {
     ?>
-    <div class="card col-10 col-md-4 col-lg-3"><img src="<?=$value->getPortada();?>" class="card-img-top" alt="<?=$value->getNombre();?>">    <div class="card-body"><h5 class="card-title"><?=$value->getNombre();?></h5><p class="card-text"><?=$value->getSinopsis();?></p>    </div> <ul class="list-group list-group-flush"> <li class="list-group-item"><?=$value->getAutor(); ?></li> <li class="list-group-item"><?= ucwords($value->getGenero()); ?></li><li class="list-group-item"><?=$value->getPages();?> páginas</li><li class="list-group-item fw-semibold">$<?=$value->getPrice();?> </li></ul><div class="card-body">
+    <div class="card col-10 col-md-4 col-lg-3">
+    <img src="<?=$value->getPortada();?>" class="card-img-top" alt="<?=$value->getNombre();?>">    <div class="card-body"><h5 class="card-title"><?=$value->getNombre();?></h5><p class="card-text"><?=$value->getSinopsis();?></p>    </div> <ul class="list-group list-group-flush"> <li class="list-group-item"><?=$value->getAutor(); ?></li> <li class="list-group-item"><?= ucwords($value->getGenero()); ?></li><li class="list-group-item"><?=$value->getPages();?> páginas</li><li class="list-group-item fw-semibold">$<?=$value->getPrice();?> </li></ul><div class="card-body">
         <a href="index.php?view=viewXproducto&code=<?= $value->getCode()?>" class="btn btn-outline-primary ">COMPRAR</a></div></div>
         <?php 
 

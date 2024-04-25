@@ -31,7 +31,7 @@ class Libro{
         }
         return $librosCatalogo;
     }
-    public function catalago_x_personajes($genero){
+    public function catalago_x_genero($genero){
         $LibrosTotal= $this->catalago();
         $librosArray=[];
         foreach ($LibrosTotal as $libro) {
@@ -55,7 +55,8 @@ class Libro{
                 $priceFound= $libro->getPrice();
                 $genreFound= $libro->getGenero();
                 $autorFound= $libro->getAutor();
-                createCardbyId($nameFound, $imgFound,$sinopsisFound,$pagesFound,$priceFound,$genreFound, $autorFound);
+                $codeFound=$libro->getCode();
+                createCardbyId($nameFound, $imgFound,$sinopsisFound,$pagesFound,$priceFound,$genreFound, $autorFound,$codeFound);
                 $isFound=true;
                 return ($libro);  
             }
