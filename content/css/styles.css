@@ -1,5 +1,30 @@
 
-[type=button]{
+nav{
+    height: 10vh;
+
+}
+div .card{
+    /* height: 100%!important; */
+}
+
+.img-card{
+    height: 40% !important;
+}
+.catalogo{
+    margin-bottom: 30px!important;
+}
+.producto img{
+    width: 300px;
+    height: 460px;
+}
+.producto {
+    border-color: darkcyan !important;
+}
+nav a.nav-link:hover{
+    color: darkcyan;
+    font-weight:600;
+}
+.btn.btn-outline-primary{
    width: 100% !important;
    --bs-btn-color:darkcyan;
    --bs-btn-border-color:darkcyan;
@@ -22,14 +47,13 @@
 }
 .card{
     --bs-card-border-color:rgb(174, 220, 220);
-
-
 }
 .contenedor-head{
     padding-left: 8%;
 }
 footer{
-    margin-top: 30px;
+    height: 10vh;
+    /* margin-top: 30px; */
     background-color: rgb(248 249 250);
 }
 footer ul{

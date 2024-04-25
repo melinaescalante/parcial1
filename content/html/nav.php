@@ -18,6 +18,9 @@
           <li class="nav-item">
             <a class="nav-link" href="index.php?view=locales">LOCALES</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?view=alumna">ALUMNA</a>
+          </li>
         </ul>
         
       </div>

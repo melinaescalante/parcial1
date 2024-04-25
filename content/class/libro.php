@@ -1,5 +1,4 @@
 <?php
-require_once "content/php/views/busqueda.php";
 
 class Libro{
     protected $code;
@@ -45,11 +44,9 @@ class Libro{
     }
    public function buscar_x_id($id){
         $LibrosTotal=$this->catalago();
-        $posicion=-1;
+        $isFound=false;
         foreach ($LibrosTotal as $libro) {
             $idlibro=$libro->getCode();
-            $posicion+=1;
-
             if ($idlibro==$id){
                 $nameFound= $libro->nombre;
                 $imgFound=$libro->getPortada();
@@ -59,19 +56,16 @@ class Libro{
                 $genreFound= $libro->getGenero();
                 $autorFound= $libro->getAutor();
                 createCardbyId($nameFound, $imgFound,$sinopsisFound,$pagesFound,$priceFound,$genreFound, $autorFound);
+                $isFound=true;
                 return ($libro);  
-                echo "<br>";
-            }
-            else{
-$msg="No coincide ni un ID con su busqueda. Lo lamentamos";
-                
-                createAnError($msg);
-                return;
             }
         }
-        
-        $libro=null;
-        // return $posicion;
+
+        if (!$isFound){
+                $msg="No coincide ni un ID con su busqueda. Lo lamentamos";
+                createAnError($msg);
+
+        }
     }
     public function getPages()
     {

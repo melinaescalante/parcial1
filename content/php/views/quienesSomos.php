@@ -22,8 +22,5 @@
     --bs-gutter-x:0;
 }
 
-footer {
-    margin-top: 0;
-}
 
 </style>
