@@ -30,6 +30,7 @@ $librosFiltrados = (new Libro())->catalago_x_personajes($generoElegido);
             <a class="border-end text-center p-2" href="index.php?sec=drama&view=catalogo
             ">Drama</a>
             <a class="border-end text-center p-2" href="index.php?sec=fantasía&view=catalogo">Fantasía</a>
+            <a class="border-end text-center p-2" href="index.php?sec=thriller&view=catalogo">Thriller</a>
         </div>
         <?php
 foreach ($librosFiltrados as $value) {
