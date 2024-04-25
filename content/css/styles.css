@@ -4,23 +4,43 @@ nav{
 
 }
 
-.navbar h1>a {
-    background-image: url(/images/logo.png) no-repeat center center !important;
+.navbar h1 a {
+    background-image: url(http://localhost/parcial1/images/logo1.png) ;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: contain!important;
     text-indent: -9999px!important;
     display: inline-block!important;
-    height: 60px!important;
-    width: 100px!important;
+    height: 80px!important;
+    width: 160px!important;
 
 }
-
-.img-card{
-    height: 40% !important;
+.locales form{
+    border:1px solid darkcyan;
+    border-radius: 8px;
+}
+.locales form p{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+textarea{
+    resize: none;
+}
+.card{
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
+}
+.locales h3{
+    font-size: 1.2rem;
+}
+.locales img{
+    border-radius: 8px;
 }
 .catalogo{
     margin-bottom: 30px!important;
 }
-.producto img{
+.producto .contenedor1 img{
     width: 300px;
     height: 460px;
 }

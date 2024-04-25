@@ -6,6 +6,10 @@ require_once "content/php/views/busqueda.php";
 require_once "content/class/libro.php";
 
 
+// $miArchivoJson = file_get_contents("content/php/libros.php");
+// $MyArray=json_encode($miArchivoJson);
+// print_r($MyArray)
+
 ?>
 <body>
 <?php  

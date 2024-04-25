@@ -3,14 +3,14 @@
 // echo $view;
 function createCardbyId($name, $img,$plot,$pages,$price,$genre,$autor){
   ?>
-  <section class="producto border-top border-bottom">
+  <section class="producto border-top border-bottom d-flex justify-content-center">
 <?php
   $view=$_GET["view"];
   if($view =="busqueda"){
     
 
     ?>
-      <div class="card col-8 col-md-4 col-lg-2 m-5"><img src="<?=$img;?>" class="card-img-top" alt="<?=$name;?>"><div class="card-body"><h5 class="card-title"><?=$name;?></h5><p class="card-text"><?=$plot;?></p>    </div> <ul class="list-group list-group-flush"> <li class="list-group-item"><?=$autor; ?></li> <li class="list-group-item"><?= ucwords($genre); ?></li><li class="list-group-item"><?=$pages;?> páginas</li><li class="list-group-item fw-semibold">$<?=$price;?> </li></ul><div class="card-body"><button type="button" class="btn btn-outline-primary">COMPRAR</button></div></div>
+      <div class="card col-8 col-md-5 col-lg-3 m-5"><img src="<?=$img;?>" class="card-img-top" alt="<?=$name;?>"><div class="card-body"><h5 class="card-title"><?=$name;?></h5><p class="card-text"><?=$plot;?></p>    </div> <ul class="list-group list-group-flush"> <li class="list-group-item"><?=$autor; ?></li> <li class="list-group-item"><?= ucwords($genre); ?></li><li class="list-group-item"><?=$pages;?> páginas</li><li class="list-group-item fw-semibold">$<?=$price;?> </li></ul><div class="card-body"><button type="button" class="btn btn-outline-primary">COMPRAR</button></div></div>
       
       <?php 
   }elseif($view=="viewXproducto"){
