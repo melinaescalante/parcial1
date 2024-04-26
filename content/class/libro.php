@@ -42,12 +42,14 @@ class Libro{
         }
         return $librosArray;
     }
-   public function buscar_x_id($id){
+   public function buscar_x_id($titulo){
         $LibrosTotal=$this->catalago();
+        $libro_a_encontrar = strtolower($titulo);
         $isFound=false;
         foreach ($LibrosTotal as $libro) {
-            $idlibro=$libro->getCode();
-            if ($idlibro==$id){
+            $titleLibro=$libro->getNombre();
+            $titleLibroMinuscula = strtolower($titleLibro);
+            if ($titleLibroMinuscula==$libro_a_encontrar){
                 $nameFound= $libro->nombre;
                 $imgFound=$libro->getPortada();
                 $sinopsisFound= $libro->getSinopsis();
@@ -57,8 +59,7 @@ class Libro{
                 $autorFound= $libro->getAutor();
                 $codeFound=$libro->getCode();
                 createCardbyId($nameFound, $imgFound,$sinopsisFound,$pagesFound,$priceFound,$genreFound, $autorFound,$codeFound);
-                $isFound=true;
-                return ($libro);  
+                $isFound=true; 
             }
         }
 
@@ -92,7 +93,7 @@ class Libro{
     {
         return $this->Autor;
     }
-    public function getNombre() 
+    public function getNombre() : String
     {
         return $this->nombre;
     }

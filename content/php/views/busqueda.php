@@ -5,7 +5,7 @@ function createCardbyId($name, $img,$plot,$pages,$price,$genre,$autor,$code){
 <?php
   $view=$_GET["view"];
   if($view =="busqueda"){
-    
+  
 // Creamos este tempplate si se ha buscado x id
     ?>
       <div class="card col-8 col-md-5 col-lg-3 m-5">
@@ -20,7 +20,7 @@ function createCardbyId($name, $img,$plot,$pages,$price,$genre,$autor,$code){
           <li class="list-group-item"><?=$pages;?> páginas</li>
           <li class="list-group-item fw-semibold">$<?=$price;?> </li>
         </ul><div class="card-body">
-          <a href="index.php?view=viewXproducto&code=<?=$code?>" class="btn btn-outline-primary ">COMPRAR</a>
+          <a href="index.php?view=viewXproducto&title=<?=$name?>" class="btn btn-outline-primary ">COMPRAR</a>
         </div>
       </div>
       
