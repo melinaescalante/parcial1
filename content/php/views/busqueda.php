@@ -1,6 +1,5 @@
 <?php
-// <?php
-// 
+
 function createCardbyId($name, $img,$plot,$pages,$price,$genre,$autor,$code){
   $view=$_GET["view"];
   $seccionistrue=false;

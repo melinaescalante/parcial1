@@ -19,7 +19,6 @@ $tituloGenero= ucwords($generoElegido);
             <h1 class="mt-5 mb-4 text-star col-12">Elegí tu libro</h1>
             <div class="form-container">
                 <form action="index.php" method="GET" class="d-flex col-12 col-md-6 col-lg-4" role="search">
-                    <!--input class="form-control me-2" type="search" placeholder="Ingrese ID" aria-label="Search"  id="code" name="code"-->
                     <input class="form-control me-2" type="search" placeholder="Ingrese titulo" aria-label="Search"  id="title" name="title" >
                     <input type="hidden" name="view" value="busqueda">
                     <input class="btn btn-outline-success" type="submit" value="Buscar">
