@@ -49,7 +49,7 @@ class Libro{
         foreach ($LibrosTotal as $libro) {
             $titleLibro=$libro->getNombre();
             $titleLibroMinuscula = strtolower($titleLibro);
-            if ($titleLibroMinuscula==$libro_a_encontrar){
+            if ($titleLibroMinuscula==$libro_a_encontrar ||  strstr($titleLibroMinuscula,$libro_a_encontrar)){
                 $nameFound= $libro->nombre;
                 $imgFound=$libro->getPortada();
                 $sinopsisFound= $libro->getSinopsis();

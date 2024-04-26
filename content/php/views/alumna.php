@@ -1,4 +1,4 @@
-<section class="alumna m-5">
+<section class="alumna">
     <div class="container-fluid container-xxl d-flex justify-content-around mt-5 mb-5 flex-wrap">
         
         <div class="imagen">

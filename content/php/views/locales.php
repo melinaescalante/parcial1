@@ -30,11 +30,11 @@
 </div>
 <div class="row contenedor justify-content-center">
   
-  <form class="col-12 col-md-8 col-lg-6 mt-4 mb-4 p-4">
+  <form class="col-12 col-md-8 col-lg-6 mt-4 mb-4 p-4" action="index.php" method="post" enctype="multipart/form-data">
     <p class="text-center mt-4 mb-4 p-4">No dudes en contactarnos ante cualquier inquietud!</p>
     <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Ingrese su email:</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text mb-3">Nunca lo compartiremos con nadie más.</div>
           </div>
           <select class="form-select mb-3" aria-label="Default select example">
@@ -45,7 +45,7 @@
           </select>
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Ingrese su inquietud.</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="mensaje" rows="3"></textarea>
           </div>
           
           <div class="mb-3 form-check">

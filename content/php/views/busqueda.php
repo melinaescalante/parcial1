@@ -1,14 +1,20 @@
 <?php
+// <?php
+// 
 function createCardbyId($name, $img,$plot,$pages,$price,$genre,$autor,$code){
-  ?>
-  <section class="producto border-top border-bottom d-flex justify-content-center">
-<?php
   $view=$_GET["view"];
+  $seccionistrue=false;
   if($view =="busqueda"){
-  
-// Creamos este tempplate si se ha buscado x id
-    ?>
-      <div class="card col-8 col-md-5 col-lg-3 m-5">
+    
+    // Creamos este tempplate si se ha buscado x id
+    if ($seccionistrue=false) {
+      ?>
+      
+      <section class="producto border-top border-bottom d-flex row justify-content-center">
+        <?php
+    }
+        ?>
+      <div class="card col-9 col-md-5 col-lg-3 m-5">
         <img src="<?=$img;?>" class="card-img-top" alt="<?=$name;?>">
         <div class="card-body">
           <h5 class="card-title"><?=$name;?></h5>
@@ -25,6 +31,7 @@ function createCardbyId($name, $img,$plot,$pages,$price,$genre,$autor,$code){
       </div>
       
       <?php 
+      $seccionistrue=true;
   }elseif($view=="viewXproducto"){
     
     ?>  
@@ -51,11 +58,13 @@ function createCardbyId($name, $img,$plot,$pages,$price,$genre,$autor,$code){
     </div>
   </div> 
 </div>
-</section>
 <?php
   }
   
 }
+?>
+</section>
+<?php
 // Creamos error si no coincide la busqueda con ni uno de los libros
 function createAnError($msg){
   ?>

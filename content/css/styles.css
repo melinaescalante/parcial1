@@ -3,6 +3,13 @@ nav{
     min-height: 10vh;
     
 }
+main{
+    margin: 0;
+}
+.row{
+    --bs-gutter-x:0!important
+
+}
 strong{
     font-weight: none;
    
