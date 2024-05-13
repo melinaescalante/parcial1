@@ -3,6 +3,8 @@ require_once "content/php/libros.php";
 require_once "content/html/header.php";
 require_once "content/php/views/busqueda.php";
 require_once "content/class/libro.php";
+require_once "content/class/conexion.php";
+
 
 ?>
 <body>
