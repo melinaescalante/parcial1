@@ -48,7 +48,7 @@ class Libro
     }
     public function buscar_x_id($titulo)
     {
-     $databookFound;
+     $databookFound=[];
         $LibrosTotal = $this->catalago();
         $libro_a_encontrar = strtolower($titulo);
         $isFound = false;
@@ -56,7 +56,7 @@ class Libro
             $titleLibro = $libro->getNombre();
             $titleLibroMinuscula = strtolower($titleLibro);
             if ($titleLibroMinuscula == $libro_a_encontrar || strstr($titleLibroMinuscula, $libro_a_encontrar)) {
-                $databookFound = [
+                $data = [
                     'nameFound1' => $libro->getNombre(),
                     'imgFound1' => $libro->getPortada(),
                     'sinopsisFound1' => $libro->getSinopsis(),
@@ -66,24 +66,15 @@ class Libro
                     'autorFound1' => $libro->getAutor(),
                     'codeFound1' => $libro->getCode(),
                 ];
-                
-                // $nameFound = $libro->nombre;
-                // $imgFound = $libro->getPortada();
-                // $sinopsisFound = $libro->getSinopsis();
-                // $pagesFound = $libro->getPages();
-                // $priceFound = $libro->getPrice();
-                // $genreFound = $libro->getGenero();
-                // $autorFound = $libro->getAutor();
-                // $codeFound = $libro->getCode();            
-                // createCardbyId($nameFound, $imgFound,$sinopsisFound,$pagesFound,$priceFound,$genreFound, $autorFound,$codeFound);
+                array_push($databookFound,$data);
                 $isFound = true;
             }
         }
-        if (!$isFound) {
-            $msg = "No coincide ni un ID con su busqueda. Lo lamentamos";
-            createAnError($msg);
+        // if (!$isFound) {
+        //     $msg = "No coincide ni un ID con su busqueda. Lo lamentamos";
+        //     createAnError($msg);
 
-        }
+        // }
         return $databookFound;
     }
     public function getPages()
