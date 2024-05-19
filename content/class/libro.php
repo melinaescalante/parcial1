@@ -1,19 +1,19 @@
 <?php
-
 class Libro
 {
-    protected $code;
+    protected $id;
     protected $nombre;
-    protected $Autor;
+    protected $autor_id;
     protected $genero;
     protected $sinopsis;
     protected $portada;
     protected $pages;
     protected $price;
+    protected $editorial_id;
     public function catalago()
     {
         $librosCatalogo = [];
-        
+
         $conexion = new Conexion();
         $conn = $conexion->getConexion();
         $query = 'SELECT * FROM libro';
@@ -23,7 +23,7 @@ class Libro
         while ($libro = $PDOStament->fetch()) {
             $librosCatalogo[] = $libro;
         }
-//         $miJson = file_get_contents("content/libros.json");
+        //         $miJson = file_get_contents("content/libros.json");
 //         $json_libros = json_decode($miJson, true);
 // print_r($json_libros);
         return $librosCatalogo;
@@ -56,25 +56,34 @@ class Libro
     }
     public function buscar_x_id($titulo)
     {
-        $databookFound=[];
-        // $libro_a_encontrar = strtolower($titulo);
+        $databookFound = [];
         $conexion = new Conexion();
         $conn = $conexion->getConexion();
         $query = 'SELECT * FROM libro WHERE nombre LIKE :titulo';
         $stmt = $conn->prepare($query);
-        
         // Agregar los comodines '%' al título
         $tituloConPorcentajes = "%$titulo%";
-        
         // Vincular el parámetro
         $stmt->bindParam(':titulo', $tituloConPorcentajes, PDO::PARAM_STR);
-        
-        // Ejecutar la consulta
         $stmt->execute();
-        
-        // Obtener los resultados
-        $databookFound = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+        $databook = $stmt->fetchAll(PDO::FETCH_ASSOC);
+     
+        foreach ($databook as $key) {
+
+            $data = [
+                'codeFound1' => $key["id"],
+                'nameFound1' => $key["nombre"],
+                'autorFound1' => $key["autor_id"],
+                'sinopsisFound1' => $key["sinopsis"],
+                'imgFound1' => $key["portada"],
+                'pagesFound1' => $key["pages"],
+                'priceFound1' => $key["price"],
+                // 'genreFound1' => $databookFound["genero"], 
+                'editorialFound1' => $key["editorial_id"],
+            ];
+            array_push($databookFound, $data);
+        }
+
         return $databookFound;
         // $PDOStament = $conn->prepare($query);
         // $PDOStament->setFetchMode(PDO::FETCH_CLASS, self::class);
@@ -97,7 +106,6 @@ class Libro
         //             'autorFound1' => $libro->getAutor(),
         //             'codeFound1' => $libro->getCode(),
         //         ];
-        //         array_push($databookFound,$data);
         //         $isFound = true;
         //     }
         // }
@@ -124,7 +132,7 @@ class Libro
     }
     public function getAutor()
     {
-        return $this->Autor;
+        return $this->autor_id;
     }
     public function getNombre(): string
     {
@@ -132,7 +140,7 @@ class Libro
     }
     public function getCode()
     {
-        return $this->code;
+        return $this->id;
     }
 
 }
