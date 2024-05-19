@@ -6,20 +6,31 @@ $conexion = new Conexion();
 
 $base_de_datos = $conexion->getConexion();
 
-// $query = "SELECT * FROM comics";
+$query = "SELECT * FROM libro";
 
-// $PDOStament = $db->prepare($query);
+$PDOStament = $base_de_datos->prepare($query);
 
-// $PDOStament->setFetchMode(PDO::FETCH_CLASS, Comic::class);
+$PDOStament->setFetchMode(PDO::FETCH_CLASS, Libro::class);
 
-// $PDOStament->execute();
+$PDOStament->execute();
 
 // $comics = [];
+$librosCatalogo = [];
 
-// while($comic = $PDOStament->fetch()){
-//     $comics []= $comic;
-// }
+while($libro = $PDOStament->fetch()){
+    $librosCatalogo []= $libro;
+}
 
-// echo "<pre>";
-// print_r($comics);
-// echo "</pre>";
+echo "<pre>";
+print_r($librosCatalogo);
+echo "</pre>";
+  
+        // $conn = $conexion->getConexion();
+       
+        // $PDOStament = $conn->prepare($query);
+        // $PDOStament->setFetchMode(PDO::FETCH_CLASS, Libro::class);
+        // $PDOStament->execute();
+        // while ($libro = $PDOStament->fetch()) {
+        //     $librosCatalogo[] = $libro;
+        // }
+        // return $librosCatalogo;
