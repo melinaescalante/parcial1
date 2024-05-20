@@ -46,6 +46,20 @@ nav a.nav-link:hover{
     --bs-btn-active-color: #fff;
     
 }
+.btn-escalante-edit{
+    --bs-btn-bg:rgb(187, 187, 96)!important;
+   --bs-btn-border-color:rgb(187, 187, 96)!important;
+
+   --bs-btn-color:black!important;
+
+}
+.btn-escalante-edit{
+    --bs-btn-bg:rgb(211, 77, 77)!important;
+   --bs-btn-border-color:rgb(211, 77, 77)!important;
+
+   --bs-btn-color:white!important;
+
+}
 .btn.btn-outline-primary{
    width: 100% !important;
    --bs-btn-color:darkcyan!important;

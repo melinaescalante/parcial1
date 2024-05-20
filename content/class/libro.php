@@ -67,19 +67,22 @@ class Libro
         $stmt->bindParam(':titulo', $tituloConPorcentajes, PDO::PARAM_STR);
         $stmt->execute();
         $databook = $stmt->fetchAll(PDO::FETCH_ASSOC);
-     
+        
         foreach ($databook as $key) {
+           
+            $autor=(new Autor())->buscar_x_id($key["autor_id"]);
+            $editorial=(new Editorial())->buscar_x_id($key["editorial_id"]);
 
             $data = [
                 'codeFound1' => $key["id"],
                 'nameFound1' => $key["nombre"],
-                'autorFound1' => $key["autor_id"],
+                'autorFound1' =>  $autor->getAutorNombre(),
                 'sinopsisFound1' => $key["sinopsis"],
                 'imgFound1' => $key["portada"],
                 'pagesFound1' => $key["pages"],
                 'priceFound1' => $key["price"],
                 // 'genreFound1' => $databookFound["genero"], 
-                'editorialFound1' => $key["editorial_id"],
+                'editorialFound1' => $editorial->getEditorialNombre(),
             ];
             array_push($databookFound, $data);
         }
@@ -132,7 +135,8 @@ class Libro
     }
     public function getAutor()
     {
-        return $this->autor_id;
+        $autor=(new Autor())->buscar_x_id($this->autor_id);
+        return $autor->getAutorNombre();
     }
     public function getNombre(): string
     {
@@ -143,4 +147,16 @@ class Libro
         return $this->id;
     }
 
+    public function getEditorialId()
+    {
+        $editorial=(new Editorial())->buscar_x_id($this->editorial_id);
+        return $editorial->getEditorialNombre();
+    }
+
+    public function setEditorialId($editorial_id): self
+    {
+        $this->editorial_id = $editorial_id;
+
+        return $this;
+    }
 }
