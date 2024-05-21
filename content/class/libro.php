@@ -159,4 +159,58 @@ class Libro
 
         return $this;
     }
+
+    public function setPages($pages): self
+    {
+        $this->pages = $pages;
+
+        return $this;
+    }
+
+    public function setPortada($portada): self
+    {
+        $this->portada = $portada;
+
+        return $this;
+    }
+
+    public function setSinopsis($sinopsis): self
+    {
+        $this->sinopsis = $sinopsis;
+
+        return $this;
+    }
+
+    public function setGenero($genero): self
+    {
+        $this->genero = $genero;
+
+        return $this;
+    }
+
+    public function setAutorId($autor_id): self
+    {
+        $this->autor_id = $autor_id;
+
+        return $this;
+    }
+
+
+    public function setNombre($nombre): self
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the value of price
+     */
+    public function setPrice($price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
 }
