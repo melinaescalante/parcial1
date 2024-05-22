@@ -17,6 +17,14 @@ strong{
 em{
     font-style: normal;
 }
+.form-autor{
+padding: 40px;
+margin: 0 auto;
+}
+.form-autor> button{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 .navbar h1 a {
     background-image: url(http://localhost/parcial1/images/logo1.png) ;
     background-position: center;
