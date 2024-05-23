@@ -56,9 +56,9 @@ class Autor
         return isset($resultado) ? $resultado : null;
 
     }
-    public function all_autors():Array
+    public function all_autors(): array
     {
-        $autorsArray=[];
+        $autorsArray = [];
         $conexion = (new Conexion())->getConexion();
         $query = "SELECT * FROM autor ";
         $PDOStament = $conexion->prepare($query);
@@ -67,7 +67,20 @@ class Autor
         while ($autor = $PDOStament->fetch()) {
             $autorsArray[] = $autor;
         }
-        
+
         return $autorsArray;
     }
+    public function insert(string $autor_nombre, string $autor_biografia)
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "INSERT INTO autor VALUES (NULL, '$autor_nombre', '$autor_biografia');";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute();
+    }
+    public function delete(){
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM autor WHERE id = $this->id";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute();  
+}
 }
