@@ -20,14 +20,14 @@ $editorials= (new Editorial())->all_editorials();
                             
                             <td>
                                 <a href="" class="d-block btn btn-sm btn-warning .btn-escalante-edit mb-1">Editar</a>
-                                <a href="actions/delete_editorials.php?id=<?= $editorial->getId() ?>"
+                                <a href="index.php?view=delete_editorial&id=<?= $editorial->getId() ?>"
                                     class="d-block btn btn-sm btn-danger btn-escalante-delete">Eliminar</a>
                             </td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
-            <a href="index.php?view=" class="btn btn-primary mt-5">Agregar Autor</a>
+            <a href="index.php?view=add_editorial" class="btn btn-primary mt-5">Agregar Ediorial</a>
         </div>
     </div>
 </div>

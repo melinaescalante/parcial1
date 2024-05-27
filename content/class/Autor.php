@@ -77,10 +77,11 @@ class Autor
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute();
     }
-    public function delete(){
+    public function delete()
+    {
         $conexion = (new Conexion())->getConexion();
         $query = "DELETE FROM autor WHERE id = $this->id";
         $PDOStament = $conexion->prepare($query);
-        $PDOStament->execute();  
-}
+        $PDOStament->execute();
+    }
 }

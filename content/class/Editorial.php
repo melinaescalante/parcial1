@@ -29,10 +29,11 @@ class Editorial
 
         return $this;
     }
-    public function buscar_x_id($id)
+    public function buscar_x_id($editorial)
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "SELECT * FROM editorial";
+        $query = "SELECT * FROM editorial WHERE id = $editorial";
+
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
         $PDOStatement->execute();
@@ -52,5 +53,18 @@ class Editorial
         }
         
         return $editorialsArray;
+    }
+    public function insert(string $nombre_editorial) {
+        $conexion = (new Conexion())->getConexion();
+        $query = "INSERT INTO editorial VALUES (NULL,'$nombre_editorial');";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute();
+    }
+    public function delete()
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM editorial WHERE id = $this->id";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute();
     }
 }

@@ -6,7 +6,7 @@ $biografia=$_POST["autor_biografia"];
 try {
     if (!empty($nombre) && !empty($biografia)) {
         (new Autor())->insert($nombre, $biografia);
-        header("Location: ../index.php?sec=manage_autors");
+        header("Location: ../index.php?view=manage_autors");
 
     } else {
         
