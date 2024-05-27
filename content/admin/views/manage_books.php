@@ -23,10 +23,10 @@ $books= (new Libro())->catalago();
                     <?php foreach ($books as $book) { ?>
                         <tr>
                             <td> <?= $book->getCode() ?>  </td>
-                            <td><img height="100px" width="70px" src="../../<?=$book->getPortada()?>" alt="Imagen de portada de:<?= $book->getNombre() ?> "> </td>
+                            <td><img height="100px" width="70px" src="../../images/catalogo/<?=$book->getPortada()?>" alt="Imagen de portada de:<?= $book->getNombre() ?> "> </td>
                             <td><?= $book->getAutor() ?> </td>
                             <td><?= $book->getNombre() ?> </td>
-                            <td><?= $book->getGenero() ?> </td>
+                            <td></*?= $book->getGenero() ?*/> </td>
                             <td><?= $book->getSinopsis() ?> </td>
                             <td><?= $book->getPages() ?> </td>
                             <td><?= $book->getPrice() ?> </td>
@@ -41,7 +41,7 @@ $books= (new Libro())->catalago();
                     <?php } ?>
                 </tbody>
             </table>
-            <a href="index.php?view=" class="btn btn-primary mt-5">Agregar Autor</a>
+            <a href="index.php?view=add_book" class="btn btn-primary mt-5">Agregar Libro</a>
         </div>
     </div>
 </div>

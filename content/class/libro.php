@@ -4,7 +4,7 @@ class Libro
     protected $id;
     protected $nombre;
     protected $autor_id;
-    protected $genero;
+    protected $genero_id;
     protected $sinopsis;
     protected $portada;
     protected $pages;
@@ -42,18 +42,18 @@ class Libro
 
         // }
     }
-    public function catalago_x_genero($genero)
-    {
-        $LibrosTotal = $this->catalago();
-        $librosArray = [];
-        foreach ($LibrosTotal as $libro) {
-            if ($libro->genero == $genero) {
-                $librosArray[] = $libro; /*Manera acortada de array_push*/
+    // public function catalago_x_genero($genero)
+    // {
+    //     $LibrosTotal = $this->catalago();
+    //     $librosArray = [];
+    //     foreach ($LibrosTotal as $libro) {
+    //         if ($libro->genero == $genero) {
+    //             $librosArray[] = $libro; /*Manera acortada de array_push*/
 
-            }
-        }
-        return $librosArray;
-    }
+    //         }
+    //     }
+    //     return $librosArray;
+    // }
     public function buscar_x_id($titulo)
     {
         $databookFound = [];
@@ -129,10 +129,10 @@ class Libro
     {
         return $this->sinopsis;
     }
-    public function getGenero()
-    {
-        return $this->genero;
-    }
+    // public function getGenero()
+    // {
+    //     return $this->genero_id;
+    // }
     public function getAutor()
     {
         $autor=(new Autor())->buscar_x_id($this->autor_id);
@@ -181,12 +181,12 @@ class Libro
         return $this;
     }
 
-    public function setGenero($genero): self
-    {
-        $this->genero = $genero;
+    // public function setGenero($genero): self
+    // {
+    //     $this->genero_id = $genero;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function setAutorId($autor_id): self
     {
@@ -203,14 +203,16 @@ class Libro
         return $this;
     }
 
-
-    /**
-     * Set the value of price
-     */
     public function setPrice($price): self
     {
         $this->price = $price;
 
         return $this;
+    }
+    public function insert(string $nombre, int $autor_id, string $sinopsis,  $portada,int $pages, int|float $price,int $editorial_id) : void {
+        $conexion = (new Conexion())->getConexion();
+        $query = "INSERT INTO libro VALUES (NULL, '$nombre','$autor_id','$sinopsis','$portada','$pages',' $price','$editorial_id');";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute();
     }
 }
