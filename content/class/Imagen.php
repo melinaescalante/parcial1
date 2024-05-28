@@ -1,6 +1,6 @@
 <?php
 class Imagen{
-    public function uploadImg($imagen, string $directorio)
+    public function uploadImg($imagen, string $directorio): string
     {
         if( !empty($imagen["tmp_name"]) ){
             $name = uniqid()."-".$imagen["name"];
