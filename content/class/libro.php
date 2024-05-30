@@ -54,7 +54,7 @@ class Libro
     //     }
     //     return $librosArray;
     // }
-    public function buscar_x_id($titulo)
+    public function buscar_x_coincidencia($titulo)
     {
         $databookFound = [];
         $conexion = new Conexion();
@@ -113,6 +113,18 @@ class Libro
         //     }
         // }
     }
+    public function buscar_x_id($code)
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "SELECT * FROM libro WHERE id = $code";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $PDOStatement->execute();
+        $resultado = $PDOStatement->fetch();
+
+        return isset($resultado) ? $resultado : null;
+    }
     public function getPages()
     {
         return $this->pages;
@@ -129,10 +141,7 @@ class Libro
     {
         return $this->sinopsis;
     }
-    // public function getGenero()
-    // {
-    //     return $this->genero_id;
-    // }
+
     public function getAutor()
     {
         $autor=(new Autor())->buscar_x_id($this->autor_id);
@@ -181,12 +190,6 @@ class Libro
         return $this;
     }
 
-    // public function setGenero($genero): self
-    // {
-    //     $this->genero_id = $genero;
-
-    //     return $this;
-    // }
 
     public function setAutorId($autor_id): self
     {
@@ -214,5 +217,11 @@ class Libro
         $query = "INSERT INTO libro VALUES (NULL, '$nombre','$autor_id','$sinopsis','$portada','$pages',' $price','$editorial_id');";
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute();
+    }
+    public function delete(){
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM libro WHERE id = $this->id";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute();  
     }
 }

@@ -13,18 +13,18 @@ class Imagen{
         }
     }
 
-    // public function deleteImg(string $filename) : bool
-    // {
-    //     if( file_exists($filename) ){
-    //         $fileDelete = unlink($filename); 
-    //         if($fileDelete){
-    //             return true;
-    //         }else{
-    //             throw new Exception("No se pudo borrar imagen");
-    //             return false;
-    //         }
-    //     }else{
-    //         return true;
-    //     }
-    // }
+    public function deleteImg(string $filename) : bool
+    {
+        if( file_exists($filename) ){
+            $fileDelete = unlink($filename); 
+            if($fileDelete){
+                return true;
+            }else{
+                throw new Exception("No se pudo borrar imagen");
+                return false;
+            }
+        }else{
+            return true;
+        }
+    }
 }

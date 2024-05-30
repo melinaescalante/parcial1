@@ -10,7 +10,7 @@ if ($view == "busqueda") {
 
       ?>
       <div class="card col-9 col-md-5 col-lg-3 m-5">
-        <img src="<?= $libro["imgFound1"]; ?>" class="card-img-top" alt="<?= $libro["nameFound1"] ?>">
+        <img src="images/catalogo/<?= $libro["imgFound1"]; ?>" class="card-img-top" alt="<?= $libro["nameFound1"] ?>">
         <div class="card-body">
           <h5 class="card-title"><?= $libro["nameFound1"] ?></h5>
           <p class="card-text"><?= $libro["sinopsisFound1"] ?></p>

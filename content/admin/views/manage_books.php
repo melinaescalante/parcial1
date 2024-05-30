@@ -34,7 +34,7 @@ $books= (new Libro())->catalago();
                             
                             <td>
                                 <a href="" class="d-block btn btn-sm btn-warning .btn-escalante-edit mb-1">Editar</a>
-                                <a href="actions/delete_books.php?id=<?= $book->getCode() ?>"
+                                <a href="index.php?view=delete_book&id=<?= $book->getCode() ?>"
                                     class="d-block btn btn-sm btn-danger btn-escalante-delete">Eliminar</a>
                             </td>
                         </tr>
