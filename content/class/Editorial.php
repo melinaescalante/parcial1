@@ -54,17 +54,27 @@ class Editorial
         
         return $editorialsArray;
     }
-    public function insert(string $nombre_editorial) {
+    public function insert(string $nombre_editorial) :void {
         $conexion = (new Conexion())->getConexion();
         $query = "INSERT INTO editorial VALUES (NULL,'$nombre_editorial');";
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute();
     }
-    public function delete()
+    public function delete(): void
     {
         $conexion = (new Conexion())->getConexion();
         $query = "DELETE FROM editorial WHERE id = $this->id";
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute();
+    }
+    public function update(string $editorial_nombre, int $id): void {
+        $conexion=(new Conexion())->getConexion();
+
+        $query = "UPDATE editorial SET editorial_nombre = :editorial_nombre WHERE id = :id;";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute([
+            "editorial_nombre" => htmlspecialchars($editorial_nombre),
+            "id" => htmlspecialchars($id),
+        ]);
     }
 }

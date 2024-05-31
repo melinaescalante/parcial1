@@ -20,7 +20,7 @@ $autores= (new Autor())->all_autors();
                             <td><?= $autor->getAutorNombre() ?> </td>
                             <td><?= $autor->getAutorBiografia() ?></td>
                             <td>
-                                <a href="" class="d-block btn btn-sm btn-warning mb-1">Editar</a>
+                                <a href="index.php?view=edit_autor&id=<?= $autor->getId() ?>" class="d-block btn btn-sm btn-warning mb-1">Editar</a>
                                 <a href="index.php?view=delete_autor&id=<?= $autor->getId() ?>"
                                     class="d-block btn btn-sm btn-danger">Eliminar</a>
                             </td>

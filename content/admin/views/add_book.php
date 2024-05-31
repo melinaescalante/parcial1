@@ -1,3 +1,8 @@
+<?php
+$editorials = (new Editorial())->all_editorials();
+$autors = (new Autor())->all_autors();
+
+?>
 <form action="action/add_book_acc.php" method="POST" enctype="multipart/form-data"
     class="container form-autor row d-flex flex-column align-items-center">
     <h1 class="text-center m-4">Agregá un libro</h1>
@@ -5,7 +10,16 @@
         <label class="mb-2 mt-2" for="nombre">Nombre del Libro:</label>
         <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre">
         <label class="mb-2 mt-2" for="autor_id">Autor Id:</label>
-        <input type="text" class="form-control" name="autor_id" id="autor_id" placeholder="Autor ID">
+        <select class="form-select" name="autor_id" id="autor_id">
+            <option selected disabled>Elija su Autor</option>
+            <?php
+            foreach ($autors as $autor) { ?>
+
+                <option value="<?= $autor->getId() ?>"><?= $autor->getAutorNombre() ?></option>
+                <?php
+            }
+            ?>
+        </select>
         <!-- <label class="mb-2 mt-2" for="genero_id">
             Género:</label>
         <input type="text" class="form-control" name="genero_id" id="genero_id" placeholder="Género"> -->
@@ -17,8 +31,18 @@
         <input type="text" class="form-control" name="pages" id="pages" placeholder="Páginas">
         <label class="mb-2 mt-2" for="price">Precio:</label>
         <input type="text" class="form-control" name="price" id="price" placeholder="Precio">
-        <label class="mb-2 mt-2" for="price">Editorial Id:</label>
-        <input type="text" class="form-control" name="editorial_id" id="editorial_id" placeholder="Editorial ID">
+        <label class="mb-2 mt-2" for="editorial_id">Editorial Id:</label>
+        <select class="form-select" name="editorial_id" id="editorial_id">
+            <option selected disabled>Elija su editorial</option>
+            <?php
+            foreach ($editorials as $editorial) { ?>
+
+                <option value="<?= $editorial->getId() ?>"><?= $editorial->getEditorialNombre() ?></option>
+                <?php
+            }
+            ?>
+        </select>
+        
     </div>
 
     <button type="submit" class="btn btn-primary col-lg-4">Submit</button>

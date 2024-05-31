@@ -84,4 +84,15 @@ class Autor
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute();
     }
+    public function update(string $autor_nombre, string $autor_biografia, int $id){
+        $conexion=(new Conexion())->getConexion();
+
+        $query = "UPDATE autor SET autor_nombre = :autor_nombre, autor_biografia=:autor_biografia WHERE id = :id;";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute([
+            "autor_nombre" => htmlspecialchars($autor_nombre),
+            "autor_biografia" => htmlspecialchars($autor_biografia),
+            "id" => htmlspecialchars($id),
+        ]);
+    }
 }

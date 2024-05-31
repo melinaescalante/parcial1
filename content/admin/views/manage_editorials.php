@@ -19,7 +19,7 @@ $editorials= (new Editorial())->all_editorials();
                             <td><?= $editorial->getEditorialNombre() ?> </td>
                             
                             <td>
-                                <a href="" class="d-block btn btn-sm btn-warning .btn-escalante-edit mb-1">Editar</a>
+                                <a href="index.php?view=edit_editorial&id=<?= $editorial->getId() ?>" class="d-block btn btn-sm btn-warning .btn-escalante-edit mb-1">Editar</a>
                                 <a href="index.php?view=delete_editorial&id=<?= $editorial->getId() ?>"
                                     class="d-block btn btn-sm btn-danger btn-escalante-delete">Eliminar</a>
                             </td>
