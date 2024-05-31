@@ -1,6 +1,6 @@
 <?php
 $editorials= (new Editorial())->all_editorials();
-?><div class="row my-5">
+?><div class=" container-xxl mx-auto container-fluid row my-5">
     <div class="col">
         <h1 class="text-center mb-5 fw-bold">Administracion de editoriales</h1>
         <div class="row mb-5 d-flex align-items-center">

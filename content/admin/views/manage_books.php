@@ -1,6 +1,6 @@
 <?php
 $books= (new Libro())->catalago();
-?><div class="row my-5">
+?><div class="container-xxl mx-auto row my-5 container-fluid">
     <div class="col">
         <h1 class="text-center mb-5 fw-bold">Administracion de libros</h1>
         <div class="row mb-5 d-flex align-items-center">
@@ -30,10 +30,10 @@ $books= (new Libro())->catalago();
                             <td><?= $book->getSinopsis() ?> </td>
                             <td><?= $book->getPages() ?> </td>
                             <td><?= $book->getPrice() ?> </td>
-                            <td><?= $book->getEditorialId() ?> </td>
+                            <td><?= $book->getEditorial() ?> </td>
                             
                             <td>
-                                <a href="" class="d-block btn btn-sm btn-warning .btn-escalante-edit mb-1">Editar</a>
+                                <a href="index.php?view=edit_book&id=<?= $book->getCode() ?>" class="d-block btn btn-sm btn-warning .btn-escalante-edit mb-1">Editar</a>
                                 <a href="index.php?view=delete_book&id=<?= $book->getCode() ?>"
                                     class="d-block btn btn-sm btn-danger btn-escalante-delete">Eliminar</a>
                             </td>

@@ -10,7 +10,7 @@ $view= isset( $_GET["view"] ) ? $_GET["view"] :$_GET["view"]="dashboard";
 
 
 ?>
-<main class="row">
+<main>
     <?php 
 
     require_once "views/$view.php";

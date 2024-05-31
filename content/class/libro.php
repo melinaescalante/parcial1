@@ -23,37 +23,11 @@ class Libro
         while ($libro = $PDOStament->fetch()) {
             $librosCatalogo[] = $libro;
         }
-        //         $miJson = file_get_contents("content/libros.json");
-//         $json_libros = json_decode($miJson, true);
-// print_r($json_libros);
+
         return $librosCatalogo;
-        // foreach ($json_libros as $libros) {
-        //     $libro = new Libro();
-        //     $libro->code = $libros["code"];
-        //     $libro->nombre = $libros["nombre"];
-        //     $libro->Autor = $libros["Autor"];
-        //     $libro->genero = $libros["genero"];
-        //     $libro->sinopsis = $libros["sinopsis"];
-        //     $libro->portada = $libros["portada"];
-        //     $libro->pages = $libros["pages"];
-        //     $libro->price = $libros["price"];
-
-        //     $librosCatalogo[] = $libro;
-
-        // }
+    
     }
-    // public function catalago_x_genero($genero)
-    // {
-    //     $LibrosTotal = $this->catalago();
-    //     $librosArray = [];
-    //     foreach ($LibrosTotal as $libro) {
-    //         if ($libro->genero == $genero) {
-    //             $librosArray[] = $libro; /*Manera acortada de array_push*/
 
-    //         }
-    //     }
-    //     return $librosArray;
-    // }
     public function buscar_x_coincidencia($titulo)
     {
         $databookFound = [];
@@ -88,30 +62,7 @@ class Libro
         }
 
         return $databookFound;
-        // $PDOStament = $conn->prepare($query);
-        // $PDOStament->setFetchMode(PDO::FETCH_CLASS, self::class);
-        // $PDOStament->execute();
-        // $databookFound = $PDOStament->fetchAll();
-        // return $databookFound;
-        // $LibrosTotal = $this->catalago();
-        // $isFound = false;
-        // foreach ($librosCatalogo as $libro) {
-        //     $titleLibro = $libro->getNombre();
-        //     $titleLibroMinuscula = strtolower($titleLibro);
-        //     if ($titleLibroMinuscula == $libro_a_encontrar || strstr($titleLibroMinuscula, $libro_a_encontrar)) {
-        //         $data = [
-        //             'nameFound1' => $libro->getNombre(),
-        //             'imgFound1' => $libro->getPortada(),
-        //             'sinopsisFound1' => $libro->getSinopsis(),
-        //             'pagesFound1' => $libro->getPages(),
-        //             'priceFound1' => $libro->getPrice(),
-        //             'genreFound1' => $libro->getGenero(),
-        //             'autorFound1' => $libro->getAutor(),
-        //             'codeFound1' => $libro->getCode(),
-        //         ];
-        //         $isFound = true;
-        //     }
-        // }
+
     }
     public function buscar_x_id($code)
     {
@@ -156,7 +107,7 @@ class Libro
         return $this->id;
     }
 
-    public function getEditorialId()
+    public function getEditorial()
     {
         $editorial=(new Editorial())->buscar_x_id($this->editorial_id);
         return $editorial->getEditorialNombre();
@@ -212,6 +163,17 @@ class Libro
 
         return $this;
     }
+    public function reemplazarImagen($imagen, $id)
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = 'UPDATE libro SET portada = :imagen WHERE id = :id;';
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute([
+            'id' => htmlspecialchars($id),
+            'imagen' => htmlspecialchars($imagen),
+        ]);
+    }
+
     public function insert(string $nombre, int $autor_id, string $sinopsis,  $portada,int $pages, int|float $price,int $editorial_id) : void {
         $conexion = (new Conexion())->getConexion();
         $query = "INSERT INTO libro VALUES (NULL, '$nombre','$autor_id','$sinopsis','$portada','$pages',' $price','$editorial_id');";
@@ -224,4 +186,40 @@ class Libro
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute();  
     }
+    public function update(int $id ,string $nombre, int $autor_id,string $sinopsis,int $pages, int |float $price, int $editorial_id) : void {
+        $conexion=(new Conexion())->getConexion();
+
+        $query="UPDATE libro SET 
+            `nombre` = :nombre, 
+            `autor_id` = :autor_id, 
+            `sinopsis` = :sinopsis, 
+            `pages` = :pages, 
+            `price` = :price, 
+            `editorial_id` = :editorial_id 
+          WHERE `id` = :id";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute([
+            
+            "id"=>htmlspecialchars($id),
+            "nombre" => htmlspecialchars($nombre),
+            "autor_id" => htmlspecialchars($autor_id),
+            "sinopsis" => htmlspecialchars($sinopsis),
+            "pages" => htmlspecialchars($pages),
+            "price" => htmlspecialchars($price),
+            "editorial_id" => htmlspecialchars($editorial_id)
+        ]);
+    }
+
+    public function getAutorId()
+    {
+        return $this->autor_id;
+    }
+
+
+    public function getEditorialId()
+    {
+        return $this->editorial_id;
+    }
+
+  
 }

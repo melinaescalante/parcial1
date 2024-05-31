@@ -1,6 +1,6 @@
 <?php
 $autores= (new Autor())->all_autors();
-?><div class="row my-5">
+?><div class="container-fluid container-xxl mx-auto row my-5">
     <div class="col">
         <h1 class="text-center mb-5 fw-bold">Administracion de autores</h1>
         <div class="row mb-5 d-flex align-items-center">
