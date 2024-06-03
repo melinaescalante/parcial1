@@ -16,12 +16,12 @@ $autores= (new Autor())->all_autors();
                 <tbody>
                     <?php foreach ($autores as $autor) { ?>
                         <tr>
-                            <td> <?= $autor->getId() ?>  </td>
-                            <td><?= $autor->getAutorNombre() ?> </td>
-                            <td><?= $autor->getAutorBiografia() ?></td>
+                            <td> <?=htmlspecialchars($autor->getId())  ?>  </td>
+                            <td><?=htmlspecialchars($autor->getAutorNombre())  ?> </td>
+                            <td><?=htmlspecialchars($autor->getAutorBiografia())  ?></td>
                             <td>
-                                <a href="index.php?view=edit_autor&id=<?= $autor->getId() ?>" class="d-block btn btn-sm btn-warning mb-1">Editar</a>
-                                <a href="index.php?view=delete_autor&id=<?= $autor->getId() ?>"
+                                <a href="index.php?view=edit_autor&id=<?= htmlspecialchars($autor->getId()) ?>" class="d-block btn btn-sm btn-warning mb-1">Editar</a>
+                                <a href="index.php?view=delete_autor&id=<?=htmlspecialchars($autor->getId())  ?>"
                                     class="d-block btn btn-sm btn-danger">Eliminar</a>
                             </td>
                         </tr>

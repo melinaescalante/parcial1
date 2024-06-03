@@ -22,19 +22,19 @@ $books= (new Libro())->catalago();
                 <tbody>
                     <?php foreach ($books as $book) { ?>
                         <tr>
-                            <td> <?= $book->getCode() ?>  </td>
-                            <td><img height="100px" width="70px" src="../../images/catalogo/<?=$book->getPortada()?>" alt="Imagen de portada de:<?= $book->getNombre() ?> "> </td>
-                            <td><?= $book->getAutor() ?> </td>
-                            <td><?= $book->getNombre() ?> </td>
+                            <td> <?= htmlspecialchars($book->getCode()) ?>  </td>
+                            <td><img height="100px" width="70px" src="../../images/catalogo/<?=htmlspecialchars($book->getPortada())?>" alt="Imagen de portada de:<?= htmlspecialchars($book->getNombre()) ?> "> </td>
+                            <td><?=htmlspecialchars($book->getAutor())  ?> </td>
+                            <td><?=htmlspecialchars($book->getNombre())  ?> </td>
                             <td></*?= $book->getGenero() ?*/> </td>
-                            <td><?= $book->getSinopsis() ?> </td>
-                            <td><?= $book->getPages() ?> </td>
-                            <td><?= $book->getPrice() ?> </td>
-                            <td><?= $book->getEditorial() ?> </td>
+                            <td><?=htmlspecialchars($book->getSinopsis())  ?> </td>
+                            <td><?=htmlspecialchars($book->getPages())  ?> </td>
+                            <td><?=htmlspecialchars($book->getPrice())  ?> </td>
+                            <td><?=htmlspecialchars($book->getEditorial())  ?> </td>
                             
                             <td>
-                                <a href="index.php?view=edit_book&id=<?= $book->getCode() ?>" class="d-block btn btn-sm btn-warning .btn-escalante-edit mb-1">Editar</a>
-                                <a href="index.php?view=delete_book&id=<?= $book->getCode() ?>"
+                                <a href="index.php?view=edit_book&id=<?= htmlspecialchars($book->getCode()) ?>" class="d-block btn btn-sm btn-warning .btn-escalante-edit mb-1">Editar</a>
+                                <a href="index.php?view=delete_book&id=<?=htmlspecialchars($book->getCode())  ?>"
                                     class="d-block btn btn-sm btn-danger btn-escalante-delete">Eliminar</a>
                             </td>
                         </tr>

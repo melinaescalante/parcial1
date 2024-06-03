@@ -2,10 +2,8 @@
 
 require_once "../../functions/autoload.php";
 
-// $fileData = $_FILES["portada"]["tmp_name"] ?$_FILES["portada"]: FALSE;
 $isPhoto = null;
-print_r($_POST);
-print_r($_FILES);
+
 if (($_FILES["portada"]["name"])!="") {
     $isPhoto = true;
     $imagen=$_FILES["portada"]["name"];
@@ -16,7 +14,7 @@ if (($_FILES["portada"]["name"])!="") {
    $isPhoto = false; 
     
 }
-// var_dump($isPhoto);
+
 try {
     if( $isPhoto ){
 
