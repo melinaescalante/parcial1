@@ -4,7 +4,7 @@ class Libro
     protected $id;
     protected $nombre;
     protected $autor_id;
-    protected $genero_id;
+
     protected $sinopsis;
     protected $portada;
     protected $pages;
@@ -69,11 +69,11 @@ class Libro
     public function buscar_x_id($code)
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "SELECT * FROM libro WHERE id = :code";
+        $query = "SELECT libro.*,GROUP_CONCAT(genero.id) AS genero FROM libro LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id JOIN genero on pivotxgeneroxlibro.genero_id= genero.id WHERE libro.id=:code Group by libro.id";
 
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
-        $PDOStatement->execute(['id' => htmlspecialchars($code),]);
+        $PDOStatement->execute(['code' => htmlspecialchars($code)]);
         $resultado = $PDOStatement->fetch();
 
         return isset($resultado) ? $resultado : null;
@@ -81,6 +81,10 @@ class Libro
     public function getPages()
     {
         return $this->pages;
+    }
+    public function getGenre()
+    {
+        return $this->genero;
     }
     public function getPrice()
     {
@@ -176,7 +180,7 @@ class Libro
         ]);
     }
 
-    public function insert(string $nombre, int $autor_id, string $sinopsis, $portada, int $pages, int|float $price, int $editorial_id): void
+    public function insert(string $nombre, int $autor_id, string $sinopsis, $portada, int $pages, int|float $price, int $editorial_id): int
     {
         $conexion = (new Conexion())->getConexion();
         $query = "INSERT INTO libro VALUES (NULL, :nombre,:autor_id,:sinopsis,:portada,:pages, :price,:editorial_id);";
@@ -190,6 +194,7 @@ class Libro
             'price' => htmlspecialchars($price),
             'editorial_id' => htmlspecialchars($editorial_id),
         ]);
+        return $conexion->lastInsertId();
     }
     public function delete()
     {
@@ -222,7 +227,25 @@ class Libro
             "editorial_id" => htmlspecialchars($editorial_id)
         ]);
     }
+public function addGenre(int $id_genre, int $id_libro): void{
+    $conexion = (new Conexion())->getConexion();
+    $query = "INSERT INTO pivotxgeneroxlibro VALUES (NULL, :id_genre, :id_libro)";
+    $PDOStament = $conexion->prepare($query);
+    $PDOStament->execute([
+        "id_genre"=>htmlspecialchars($id_genre),
+        "id_libro"=>htmlspecialchars($id_libro)
+        ]);
 
+}
+public function delete_genre(int $id_libro): void{
+    $conexion = (new Conexion())->getConexion();
+    $query = "DELETE FROM pivotxgeneroxlibro WHERE libro_id = :id_libro";
+    $PDOStament = $conexion->prepare($query);
+    $PDOStament->execute([
+        "id_libro"=>htmlspecialchars($id_libro)
+        ]);
+
+}
     public function getAutorId()
     {
         return $this->autor_id;

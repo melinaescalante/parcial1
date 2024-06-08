@@ -3,6 +3,7 @@
 require_once "../../functions/autoload.php";
 
 $isPhoto = null;
+$genres_id = $_POST["generos"];
 
 if (($_FILES["portada"]["name"])!="") {
     $isPhoto = true;
@@ -37,6 +38,10 @@ try {
         $_POST["price"],
         $_POST["editorial_id"]
     );
+    (new Libro())->delete_genre($_POST["id"]);
+    foreach ($genres_id as $genre_id) {
+        (new Libro())->addGenre($genre_id,$_POST["id"]);
+    }
     header("Location: ../index.php?view=manage_books");
 } catch (Exception $e) {
     echo $e->getMessage();

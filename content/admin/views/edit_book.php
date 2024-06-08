@@ -2,7 +2,9 @@
 $id = $_GET["id"];
 $editorials = (new Editorial())->all_editorials();
 $autors = (new Autor())->all_autors();
-$libro = (new Libro())->buscar_x_id($id)
+$libro = (new Libro())->buscar_x_id($id);
+$generos = (new Genero())->all_genres();
+
 
 
     ?>
@@ -26,9 +28,21 @@ $libro = (new Libro())->buscar_x_id($id)
             }
             ?>
         </select>
-        <!-- <label class="mb-2 mt-2" for="genero_id">
-            Género:</label>
-        <input type="text" class="form-control" name="genero_id" id="genero_id" placeholder="Género"> -->
+        <label class="mb-2 mt-2" for="genero">
+            Género/s:</label>
+        <div class="d-flex flex-column">
+
+            <?php foreach ($generos as $genero) { 
+                $genreSelect=explode(",", $libro->getGenre());
+                ?>
+                <div>
+
+                    <input type="checkbox" name="generos[]" id="<?= $genero->getId() ?>" value="<?= $genero->getId() ?>"<?=in_array($genero->getId(),$genreSelect)? "checked": ""?>>
+                    <label for="<?= $genero->getId() ?>"><?= $genero->getGeneroTipo() ?></label>
+                    </div>
+                    <?php
+            } ?>
+        </div>
         <label class="mb-2 mt-2" for="sinopsis">Sinopsis:</label>
         <textarea class="form-control" name="sinopsis" id="sinopsis" placeholder="Sinopsis"
             rows="5"><?=htmlspecialchars( $libro->getSinopsis())  ?></textarea>

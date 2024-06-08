@@ -1,6 +1,7 @@
 <?php
 $editorials = (new Editorial())->all_editorials();
 $autors = (new Autor())->all_autors();
+$generos = (new Genero())->all_genres();
 
 ?>
 <form action="action/add_book_acc.php" method="POST" enctype="multipart/form-data"
@@ -20,9 +21,19 @@ $autors = (new Autor())->all_autors();
             }
             ?>
         </select>
-        <!-- <label class="mb-2 mt-2" for="genero_id">
-            Género:</label>
-        <input type="text" class="form-control" name="genero_id" id="genero_id" placeholder="Género"> -->
+        <label class="mb-2 mt-2" for="genero">
+            Género/s:</label>
+        <div class="d-flex flex-column">
+
+            <?php foreach ($generos as $genero) { ?>
+                <div>
+
+                    <input type="checkbox" name="generos[]" id="<?= $genero->getId() ?>" value="<?= $genero->getId() ?>">
+                    <label for="<?= $genero->getId() ?>"><?= $genero->getGeneroTipo() ?></label>
+                    </div>
+                    <?php
+            } ?>
+        </div>
         <label class="mb-2 mt-2" for="sinopsis">Sinopsis:</label>
         <input type="text" class="form-control" name="sinopsis" id="sinopsis" placeholder="Sinopsis">
         <label class="mb-2 mt-2" for="portada">Portada Libro:</label>
@@ -42,7 +53,7 @@ $autors = (new Autor())->all_autors();
             }
             ?>
         </select>
-        
+
     </div>
 
     <button type="submit" class="btn btn-primary col-lg-4">Submit</button>
