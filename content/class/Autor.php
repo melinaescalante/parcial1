@@ -47,10 +47,10 @@ class Autor
     public function buscar_x_id($autor)
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "SELECT * FROM autor WHERE id = $autor";
+        $query = "SELECT * FROM autor WHERE id = :autor";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
-        $PDOStatement->execute();
+        $PDOStatement->execute(["autor" => htmlspecialchars($autor)]);
         $resultado = $PDOStatement->fetch();
 
         return isset($resultado) ? $resultado : null;
@@ -73,9 +73,10 @@ class Autor
     public function insert(string $autor_nombre, string $autor_biografia)
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "INSERT INTO autor VALUES (NULL, '$autor_nombre', '$autor_biografia');";
+        $query = "INSERT INTO autor VALUES (NULL,:autor_nombre, :autor_biografia);";
         $PDOStament = $conexion->prepare($query);
-        $PDOStament->execute();
+        $PDOStament->execute([
+            "autor_nombre" => htmlspecialchars($autor_nombre), "autor_biografia" => htmlspecialchars($autor_biografia)]);
     }
     public function delete()
     {
@@ -84,8 +85,9 @@ class Autor
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute();
     }
-    public function update(string $autor_nombre, string $autor_biografia, int $id){
-        $conexion=(new Conexion())->getConexion();
+    public function update(string $autor_nombre, string $autor_biografia, int $id)
+    {
+        $conexion = (new Conexion())->getConexion();
 
         $query = "UPDATE autor SET autor_nombre = :autor_nombre, autor_biografia=:autor_biografia WHERE id = :id;";
         $PDOStament = $conexion->prepare($query);

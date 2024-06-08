@@ -10,13 +10,15 @@ class Libro
     protected $pages;
     protected $price;
     protected $editorial_id;
+    protected $genero;
     public function catalago()
     {
         $librosCatalogo = [];
 
         $conexion = new Conexion();
         $conn = $conexion->getConexion();
-        $query = 'SELECT * FROM libro';
+        $query = 'SELECT libro.*,GROUP_CONCAT(genero.genero_tipo) AS genero FROM libro LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id JOIN genero on pivotxgeneroxlibro.genero_id= genero.id Group by libro.id';
+        // $query = 'SELECT * FROM libro';
         $PDOStament = $conn->prepare($query);
         $PDOStament->setFetchMode(PDO::FETCH_CLASS, Libro::class);
         $PDOStament->execute();
@@ -25,7 +27,7 @@ class Libro
         }
 
         return $librosCatalogo;
-    
+
     }
 
     public function buscar_x_coincidencia($titulo)
@@ -35,22 +37,22 @@ class Libro
         $conn = $conexion->getConexion();
         $query = 'SELECT * FROM libro WHERE nombre LIKE :titulo';
         $stmt = $conn->prepare($query);
-        // Agregar los comodines '%' al título
+
         $tituloConPorcentajes = "%$titulo%";
-        // Vincular el parámetro
+
         $stmt->bindParam(':titulo', $tituloConPorcentajes, PDO::PARAM_STR);
         $stmt->execute();
         $databook = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         foreach ($databook as $key) {
-           
-            $autor=(new Autor())->buscar_x_id($key["autor_id"]);
-            $editorial=(new Editorial())->buscar_x_id($key["editorial_id"]);
+
+            $autor = (new Autor())->buscar_x_id($key["autor_id"]);
+            $editorial = (new Editorial())->buscar_x_id($key["editorial_id"]);
 
             $data = [
                 'codeFound1' => $key["id"],
                 'nameFound1' => $key["nombre"],
-                'autorFound1' =>  $autor->getAutorNombre(),
+                'autorFound1' => $autor->getAutorNombre(),
                 'sinopsisFound1' => $key["sinopsis"],
                 'imgFound1' => $key["portada"],
                 'pagesFound1' => $key["pages"],
@@ -67,11 +69,11 @@ class Libro
     public function buscar_x_id($code)
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "SELECT * FROM libro WHERE id = $code";
+        $query = "SELECT * FROM libro WHERE id = :code";
 
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
-        $PDOStatement->execute();
+        $PDOStatement->execute(['id' => htmlspecialchars($code),]);
         $resultado = $PDOStatement->fetch();
 
         return isset($resultado) ? $resultado : null;
@@ -95,7 +97,7 @@ class Libro
 
     public function getAutor()
     {
-        $autor=(new Autor())->buscar_x_id($this->autor_id);
+        $autor = (new Autor())->buscar_x_id($this->autor_id);
         return $autor->getAutorNombre();
     }
     public function getNombre(): string
@@ -109,7 +111,7 @@ class Libro
 
     public function getEditorial()
     {
-        $editorial=(new Editorial())->buscar_x_id($this->editorial_id);
+        $editorial = (new Editorial())->buscar_x_id($this->editorial_id);
         return $editorial->getEditorialNombre();
     }
 
@@ -174,22 +176,33 @@ class Libro
         ]);
     }
 
-    public function insert(string $nombre, int $autor_id, string $sinopsis,  $portada,int $pages, int|float $price,int $editorial_id) : void {
+    public function insert(string $nombre, int $autor_id, string $sinopsis, $portada, int $pages, int|float $price, int $editorial_id): void
+    {
         $conexion = (new Conexion())->getConexion();
-        $query = "INSERT INTO libro VALUES (NULL, '$nombre','$autor_id','$sinopsis','$portada','$pages',' $price','$editorial_id');";
+        $query = "INSERT INTO libro VALUES (NULL, :nombre,:autor_id,:sinopsis,:portada,:pages, :price,:editorial_id);";
         $PDOStament = $conexion->prepare($query);
-        $PDOStament->execute();
+        $PDOStament->execute([
+            'nombre' => htmlspecialchars($nombre),
+            'autor_id' => htmlspecialchars($autor_id),
+            'sinopsis' => htmlspecialchars($sinopsis),
+            'portada' => htmlspecialchars($portada),
+            'pages' => htmlspecialchars($pages),
+            'price' => htmlspecialchars($price),
+            'editorial_id' => htmlspecialchars($editorial_id),
+        ]);
     }
-    public function delete(){
+    public function delete()
+    {
         $conexion = (new Conexion())->getConexion();
         $query = "DELETE FROM libro WHERE id = $this->id";
         $PDOStament = $conexion->prepare($query);
-        $PDOStament->execute();  
+        $PDOStament->execute();
     }
-    public function update(int $id ,string $nombre, int $autor_id,string $sinopsis,int $pages, int |float $price, int $editorial_id) : void {
-        $conexion=(new Conexion())->getConexion();
+    public function update(int $id, string $nombre, int $autor_id, string $sinopsis, int $pages, int|float $price, int $editorial_id): void
+    {
+        $conexion = (new Conexion())->getConexion();
 
-        $query="UPDATE libro SET 
+        $query = "UPDATE libro SET 
             `nombre` = :nombre, 
             `autor_id` = :autor_id, 
             `sinopsis` = :sinopsis, 
@@ -199,8 +212,8 @@ class Libro
           WHERE `id` = :id";
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute([
-            
-            "id"=>htmlspecialchars($id),
+
+            "id" => htmlspecialchars($id),
             "nombre" => htmlspecialchars($nombre),
             "autor_id" => htmlspecialchars($autor_id),
             "sinopsis" => htmlspecialchars($sinopsis),
@@ -221,5 +234,5 @@ class Libro
         return $this->editorial_id;
     }
 
-  
+
 }

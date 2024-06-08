@@ -32,11 +32,11 @@ class Editorial
     public function buscar_x_id($editorial)
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "SELECT * FROM editorial WHERE id = $editorial";
+        $query = "SELECT * FROM editorial WHERE id = :editorial";
 
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
-        $PDOStatement->execute();
+        $PDOStatement->execute(["editorial"=>htmlspecialchars($editorial) ]);
         $resultado = $PDOStatement->fetch();
 
         return isset($resultado) ? $resultado : null;
@@ -56,9 +56,9 @@ class Editorial
     }
     public function insert(string $nombre_editorial) :void {
         $conexion = (new Conexion())->getConexion();
-        $query = "INSERT INTO editorial VALUES (NULL,'$nombre_editorial');";
+        $query = "INSERT INTO editorial VALUES (NULL,:nombre_editorial);";
         $PDOStament = $conexion->prepare($query);
-        $PDOStament->execute();
+        $PDOStament->execute(["nombre_editorial"=>htmlspecialchars($nombre_editorial) ]);
     }
     public function delete(): void
     {
