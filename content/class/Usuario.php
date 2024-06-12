@@ -32,13 +32,28 @@ class Usuario{
     {
         $conexion = (new Conexion())->getConexion();
         $query = "INSERT INTO usuario VALUES (NULL, :nombre,:email,:pass,:rol);";
+        $paswordHash = password_hash(htmlspecialchars($pass), PASSWORD_DEFAULT);   
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute([
             'nombre' => htmlspecialchars($nombre),
-            'autor_id' => htmlspecialchars($email),
-            'sinopsis' => htmlspecialchars($pass),
-            'portada' => htmlspecialchars($rol)
+            'email' => htmlspecialchars($email),
+            'pass' => $paswordHash,
+            'rol' => htmlspecialchars($rol)
         ]);
         // return $conexion->lastInsertId();
     }
+    public function usuario_x_email(string $email) 
+	{
+		$conexion = (new Conexion())->getConexion();
+		$query = " SELECT * FROM usuario WHERE email = :email ";
+		$PDOStament = $conexion->prepare($query);
+		$PDOStament->setFetchMode(PDO::FETCH_CLASS, self::class);
+		$PDOStament->execute([
+			"email" => htmlspecialchars($email)
+		]);
+
+		$result = $PDOStament->fetch();
+
+		return $result ? $result : null; 
+	}
 }

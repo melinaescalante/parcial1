@@ -12,22 +12,31 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.php?view=dashboard">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.php?view=manage_autors">Autores</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.php?view=manage_editorials">Editoriales</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.php?view=manage_genres">Géneros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.php?view=manage_books">Libros</a>
-          </li>
+          <?php if (isset($_SESSION["login"]) && $_SESSION["login"]["rol"] == "admin") { ?>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.php?view=dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.php?view=manage_autors">Autores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.php?view=manage_editorials">Editoriales</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.php?view=manage_genres">Géneros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.php?view=manage_books">Libros</a>
+            </li>
+          <?php } elseif(!isset($_SESSION["login"])) { ?>
 
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.php?view=login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.php?view=register">Registro</a>
+            </li>
+          <?php } ?>
         </ul>
 
       </div>
