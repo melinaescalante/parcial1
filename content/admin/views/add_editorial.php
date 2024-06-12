@@ -1,5 +1,5 @@
 <form action="action/add_editorial_acc.php" method="POST"
-    class="container form-autor row d-flex flex-column align-items-center">
+    class="container form-autor row d-flex flex-column">
     <h1 class="text-center m-4">Agregá una editorial</h1>
     <div class="form-group col-12 col-lg-4 col-md-6 mt-4">
         <label class="mb-2" for="editorial_nombre">Nombre Editorial:</label>
