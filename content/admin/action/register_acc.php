@@ -11,7 +11,7 @@ try {
     //    Mostrar un alert
     }else{
         (new Usuario())->insert($nombre, $email,$pass,"usuario");
-        header("Location: ../index.php?view=dashboard");
+        header("Location: ../index.php?view=login");
         
     }
 

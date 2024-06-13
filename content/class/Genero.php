@@ -43,4 +43,10 @@ class Genero
         return $genresArray;
 
     }
+    public function insert(string $genero_tipo) :void {
+        $conexion = (new Conexion())->getConexion();
+        $query = "INSERT INTO genero VALUES (NULL,:genero_tipo);";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute(["genero_tipo"=>htmlspecialchars($genero_tipo) ]);
+    }
 }

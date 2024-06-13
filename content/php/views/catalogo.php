@@ -45,7 +45,7 @@ if ($generoElegido != "") {
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><?= $value->getAutor(); ?></li>
-                    <!-- <li class="list-group-item">?= ucwords($value->getGenero()); ?></li> -->
+                    <li class="list-group-item"><?= $value->getGenre(); ?></li>
                     <li class="list-group-item"><?= $value->getPages(); ?> páginas</li>
                     <li class="list-group-item"><?= $value->getEditorial(); ?> Editorial</li>
                     <li class="list-group-item fw-semibold">$<?= $value->getPrice(); ?> </li>

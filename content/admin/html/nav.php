@@ -1,4 +1,5 @@
 <?php
+require_once "../functions/autoload.php";
 
 ?>
 <header>
@@ -12,7 +13,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <?php if (isset($_SESSION["login"]) && $_SESSION["login"]["rol"] == "admin") { ?>
+          <?php 
+
+          if(isset($_SESSION["login"])) { 
+            echo"soy admin";
+            ?>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="index.php?view=dashboard">Dashboard</a>
             </li>
@@ -28,13 +33,17 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="index.php?view=manage_books">Libros</a>
             </li>
-          <?php } elseif(!isset($_SESSION["login"])) { ?>
-
+            
+          <?php } else{ 
+            echo"soy usuario";
+            ?>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="index.php?view=login">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="index.php?view=register">Registro</a>
+            </li><li class="nav-item">
+              <a class="nav-link" aria-current="page" href="action/logout.php">Salir</a>
             </li>
           <?php } ?>
         </ul>

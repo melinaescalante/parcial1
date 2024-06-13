@@ -1,4 +1,5 @@
 <?php
+
 class Autentificacion{
     public function log_in($email, $pass): bool
     {
@@ -6,12 +7,10 @@ class Autentificacion{
         
         if(($usuario!=null)){
             if((password_verify($pass, $usuario->getPassword()))){
-                // 
-                // echo"entre";
                 $datosLogin = ["id" => $usuario->getId(),    "usuarioNombre" => $usuario->getNombreCompleto(),"email" => $usuario->getEmail(),"rol" => $usuario->getRol()
                 ];
                 $_SESSION["login"] = $datosLogin;
-            
+                
                 return true;
             }
         }
@@ -28,7 +27,7 @@ class Autentificacion{
         ){
             return true;
         }else{
-            header("Location: index.php?view=login");
+            // header("Location: index.php?view=login");
         }
     }
 }

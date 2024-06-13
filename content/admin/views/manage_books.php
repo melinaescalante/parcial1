@@ -26,7 +26,7 @@ $books= (new Libro())->catalago();
                             <td><img height="100px" width="70px" src="../../images/catalogo/<?=htmlspecialchars($book->getPortada())?>" alt="Imagen de portada de:<?= htmlspecialchars($book->getNombre()) ?> "> </td>
                             <td><?=htmlspecialchars($book->getAutor())  ?> </td>
                             <td><?=htmlspecialchars($book->getNombre())  ?> </td>
-                            <td>vacio </td>
+                            <td><?=htmlspecialchars($book->getGenre()) ?>  </td>
                             <td><?=htmlspecialchars($book->getSinopsis())  ?> </td>
                             <td><?=htmlspecialchars($book->getPages())  ?> </td>
                             <td><?=htmlspecialchars($book->getPrice())  ?> </td>

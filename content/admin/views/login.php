@@ -6,7 +6,7 @@
         <div class="col-12 col-lg-4 col-md-6 mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control" id="email" name="email" required>
-            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+       
         </div>
         <div class="col-12 col-lg-4 col-md-6 mb-3">
             <label for="password" class="form-label">Contraseña</label>

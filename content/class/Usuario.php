@@ -5,9 +5,6 @@ class Usuario{
     protected $email;
     protected $password;
     protected $rol;
-
-    // public function(){
-
     public function getId()
     {
         return $this->id;
