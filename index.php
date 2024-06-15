@@ -1,11 +1,6 @@
 <?php 
-require_once "content/php/libros.php";
 require_once "content/html/header.php";
-require_once "content/class/Libro.php";
-require_once "content/class/Autor.php";
-require_once "content/class/Editorial.php";
-require_once "content/class/Conexion.php";
-
+require_once "content/functions/autoload.php";
 
 ?>
 <body>

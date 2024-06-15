@@ -14,8 +14,8 @@ require_once "../functions/autoload.php";
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <?php 
-
-          if(isset($_SESSION["login"])) { 
+print_r($_SESSION);
+          if(isset($_SESSION["login"])&& ($_SESSION["login"]["rol"])==="admin"){ 
             echo"soy admin";
             ?>
             <li class="nav-item">

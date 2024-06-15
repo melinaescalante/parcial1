@@ -23,6 +23,23 @@
           <li class="nav-item">
             <a class="nav-link" href="index.php?view=alumna">ALUMNA</a>
           </li>
+          <?php
+          if(!isset($_SESSION["login"])) { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="content/admin/index.php?view=login">INGRESAR</a>
+          </li>
+
+          <?php
+          }else{
+            ?>
+
+            <li class="nav-item">
+              <a class="nav-link" href="index.php?view=alumna">SALIR</a>
+              </li>
+          <?php
+          }
+          ?>
+
         </ul>
         
       </div>

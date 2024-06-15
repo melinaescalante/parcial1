@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2024 a las 16:45:10
+-- Tiempo de generación: 14-06-2024 a las 18:00:47
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -79,7 +79,8 @@ INSERT INTO `editorial` (`id`, `editorial_nombre`) VALUES
 (8, 'Lumen'),
 (9, 'Crossbooks'),
 (10, 'DelBolsillo'),
-(11, 'Salamandra');
+(11, 'Salamandra'),
+(14, 'policial');
 
 -- --------------------------------------------------------
 
@@ -177,6 +178,28 @@ INSERT INTO `pivot-genero-libro` (`id`, `genero_id`, `libro_id`) VALUES
 (17, 1, 12),
 (18, 2, 12);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nombre_completo` varchar(256) NOT NULL,
+  `email` varchar(256) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `rol` enum('usuario','admin') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nombre_completo`, `email`, `password`, `rol`) VALUES
+(1, 'melina', 'melina@gmail.com', '$2y$10$qFBTMqgN8eWBzi95HjHV5uqSe2pxGXouFHSmIvgPec8TMSxKajOTG', 'usuario'),
+(2, 'melina', 'melina1@gmail.com', '$2y$10$hdBbOKfLcNZEvbVRnYwP/OJHKQc8nvWsbQf3S47nYHoZ7wn6aRvtK', 'usuario');
+
 --
 -- Índices para tablas volcadas
 --
@@ -216,6 +239,12 @@ ALTER TABLE `pivot-genero-libro`
   ADD KEY `libro_id` (`libro_id`);
 
 --
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -229,7 +258,7 @@ ALTER TABLE `autor`
 -- AUTO_INCREMENT de la tabla `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `genero`
@@ -248,6 +277,12 @@ ALTER TABLE `libro`
 --
 ALTER TABLE `pivot-genero-libro`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
