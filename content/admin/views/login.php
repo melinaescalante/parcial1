@@ -1,5 +1,5 @@
-<?php
-?>
+
+
 <div class="container form-autor row d-flex flex-column">
 <h1 class="text-center mt-3 mb-5">Login</h1>
     <form action="action/login_acc.php" method="POST" class="d-flex flex-column align-items-center">

@@ -1,3 +1,5 @@
+<?= (new Alerta())->get_alertas() ?>
+
 <section class="quienes-somos p-5 row">
 <div class="contenedor-quienes-somos col-12 col-md-8 col-lg-7">
     <h1>Bienvenido a La<strong> Casa del Libro!</strong></h1>

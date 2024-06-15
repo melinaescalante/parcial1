@@ -7,8 +7,9 @@ print_r(($_POST));
 try {
     $usuario = (new Usuario())->usuario_x_email($email);
     if($usuario){
-       echo "este email ya se encuentra egistrado";
-    //    Mostrar un alert
+        (new Alerta())->add_alerta("Este mail ya se encuentra logueado", "danger");
+        header("Location: ../index.php?view=register");
+
     }else{
         (new Usuario())->insert($nombre, $email,$pass,"usuario");
         header("Location: ../index.php?view=login");

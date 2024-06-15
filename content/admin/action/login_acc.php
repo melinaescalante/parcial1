@@ -11,15 +11,17 @@ try {
         $ifIsAdmin=(new Autentificacion())->dataSession($email, $pass);
 
         if ($ifIsAdmin["rol"]==="admin") {
-            echo"hola soy admin";
+            
             header("Location: ../index.php?view=dashboard");
         }else{
-            echo"hola soy usuario";
+       
             header("Location: ../../../index.php");
 
         }
+    (new Alerta())->add_alerta("Se ha logeado correctamento", "success");
     
     } else {
+        (new Alerta())->add_alerta("Por favor registrese antes", "warning");
         header("Location: ../index.php?view=register");
     }
 } catch (Exception $e) {

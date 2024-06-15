@@ -10,7 +10,6 @@ class Autentificacion{
                 $datosLogin = ["id" => $usuario->getId(),    "usuarioNombre" => $usuario->getNombreCompleto(),"email" => $usuario->getEmail(),"rol" => $usuario->getRol()
                 ];
                 $_SESSION["login"] = $datosLogin;
-                
                 return true;
             }
         }

@@ -1,4 +1,5 @@
 
+<?= (new Alerta())->get_alertas() ?>
 <div class="d-flex justify-content-center p-5">
 <div>
     <h1 class="text-center mb-5 fw-bold">Panel de control</h1>
