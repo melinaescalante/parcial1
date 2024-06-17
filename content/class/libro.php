@@ -30,6 +30,36 @@ class Libro
 
     }
 
+    public function buscar_x_genero($genero)
+    {
+        $databookFound = [];
+        $conexion = new Conexion();
+        $conn = $conexion->getConexion();
+        $query = 'SELECT libro.*, GROUP_CONCAT(genero.genero_tipo) AS genero FROM libro  LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id 
+                  JOIN genero ON pivotxgeneroxlibro.genero_id = genero.id 
+                  WHERE libro.id IN (
+                      SELECT libro.id 
+                      FROM libro 
+                      LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id 
+                      JOIN genero ON pivotxgeneroxlibro.genero_id = genero.id 
+                      WHERE genero.genero_tipo LIKE :genero
+                )  GROUP BY libro.id';
+
+        $PDOStament = $conn->prepare($query);
+        $PDOStament->setFetchMode(PDO::FETCH_CLASS, Libro::class);
+    
+
+        $PDOStament->execute([
+            "genero" => htmlspecialchars("%$genero%"),
+        ]);
+
+        while ($libro = $PDOStament->fetch()) {
+            $databookFound[] = $libro;
+        }
+
+        return $databookFound;
+
+    }
     public function buscar_x_coincidencia($titulo)
     {
         $databookFound = [];
@@ -57,7 +87,7 @@ class Libro
                 'imgFound1' => $key["portada"],
                 'pagesFound1' => $key["pages"],
                 'priceFound1' => $key["price"],
-                // 'genreFound1' => $databookFound["genero"], 
+                'genreFound1' => $databookFound["genero"], 
                 'editorialFound1' => $editorial->getEditorialNombre(),
             ];
             array_push($databookFound, $data);

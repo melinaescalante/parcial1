@@ -5,8 +5,8 @@ $librosObjeto = (new Libro())->catalago();
 $Libros = $librosObjeto;
 $tituloGenero = "";
 if ($generoElegido != "") {
-    $librosFiltrados = (new Libro())->catalago_x_genero($generoElegido);
-    $tituloGenero = ucwords($generoElegido);
+    $librosFiltrados = (new Libro())->buscar_x_genero($generoElegido);
+    // $tituloGenero = ucwords($generoElegido);
 } else {
     $librosFiltrados = $Libros;
 }

@@ -17,7 +17,7 @@ if ($view == "busqueda") {
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><?= $libro["autorFound1"] ?></li>
-          <!-- <li class="list-group-item"><?= $libro["genreFound1"] ?></li> -->
+          <li class="list-group-item"><?= $libro["genreFound1"] ?></li>
           <li class="list-group-item"><?= $libro["pagesFound1"] ?> páginas</li>
           <li class="list-group-item"><?= $libro["editorialFound1"] ?> Editorial</li>
           <li class="list-group-item fw-semibold">$<?= $libro["priceFound1"] ?> </li>

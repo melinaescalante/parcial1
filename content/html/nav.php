@@ -29,6 +29,9 @@
             <li class="nav-item">
               <a class="nav-link" href="content/admin/index.php?view=login">INGRESAR</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="content/admin/index.php?view=register">REGISTRARME</a>
+            </li>
 
             <?php
           } elseif (isset($_SESSION["login"]))  {
