@@ -8,6 +8,7 @@ try {
 
         $eliminoImagen=(new Imagen())->deleteImg( "../../../images/catalogo/" . $libro->getPortada() );
         $libro->delete();
+        (new Alerta())->add_alerta("Libro correctamente eliminado", "success");
         header("Location: ../index.php?view=manage_books");
     }else{
         throw new Exception("No tengo id");

@@ -6,6 +6,7 @@ require_once '../../functions/autoload.php';
         if( $id ){
             $editorial = (new Editorial())->buscar_x_id($id);
             $editorial->delete();
+            (new Alerta())->add_alerta("Editorial correctamente eliminada", "success");
             header("Location: ../index.php?view=manage_editorials");
         }else{
             throw new Exception("No se ha ingresado ni un id.");

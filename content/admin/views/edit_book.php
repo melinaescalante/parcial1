@@ -33,7 +33,7 @@ $generos = (new Genero())->all_genres();
         <div class="d-flex flex-column">
 
             <?php foreach ($generos as $genero) { 
-                $genreSelect=explode(",", $libro->getGenre());
+                $genreSelect=explode(",", $libro->getAllGenres());
                 ?>
                 <div>
 

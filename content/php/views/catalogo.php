@@ -1,12 +1,15 @@
 <?php
 require_once "./index.php";
 $librosObjeto = (new Libro())->catalago();
+// echo "<pre>";
+// print_r($librosObjeto);
+// echo "</pre>";
 
 $Libros = $librosObjeto;
 $tituloGenero = "";
 if ($generoElegido != "") {
     $librosFiltrados = (new Libro())->buscar_x_genero($generoElegido);
-    // $tituloGenero = ucwords($generoElegido);
+    
 } else {
     $librosFiltrados = $Libros;
 }
@@ -45,7 +48,7 @@ if ($generoElegido != "") {
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><?= $value->getAutor(); ?></li>
-                    <li class="list-group-item"><?= $value->getGenre(); ?></li>
+                    <li class="list-group-item"><?= $value->getAllGenres(); ?></li>
                     <li class="list-group-item"><?= $value->getPages(); ?> páginas</li>
                     <li class="list-group-item"><?= $value->getEditorial(); ?> Editorial</li>
                     <li class="list-group-item fw-semibold">$<?= $value->getPrice(); ?> </li>

@@ -1,6 +1,8 @@
 <?php
 $editorials= (new Editorial())->all_editorials();
-?><div class=" container-xxl mx-auto container-fluid row my-5">
+?>
+<?=(new Alerta())->get_alertas();?>
+<div class=" container-xxl mx-auto container-fluid row my-5">
     <div class="col">
         <h1 class="text-center mb-5 fw-bold">Administracion de editoriales</h1>
         <div class="row mb-5 d-flex align-items-center">
@@ -27,7 +29,7 @@ $editorials= (new Editorial())->all_editorials();
                     <?php } ?>
                 </tbody>
             </table>
-            <a href="index.php?view=add_editorial" class="btn btn-primary mt-5">Agregar Ediorial</a>
+            <a href="index.php?view=add_editorial" class="btn btn-primary mt-5">Agregar Editorial</a>
         </div>
     </div>
 </div>

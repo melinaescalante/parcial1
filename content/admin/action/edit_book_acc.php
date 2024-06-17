@@ -42,6 +42,7 @@ try {
     foreach ($genres_id as $genre_id) {
         (new Libro())->addGenre($genre_id,$_POST["id"]);
     }
+    (new Alerta())->add_alerta("Libro correctamente editado", "success");
     header("Location: ../index.php?view=manage_books");
 } catch (Exception $e) {
     echo $e->getMessage();

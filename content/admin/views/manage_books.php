@@ -1,6 +1,8 @@
 <?php
 $books= (new Libro())->catalago();
-?><div class="container-xxl mx-auto row my-5 container-fluid">
+?>
+<?=(new Alerta())->get_alertas();?>
+<div class="container-xxl mx-auto row my-5 container-fluid">
     <div class="col">
         <h1 class="text-center mb-5 fw-bold">Administracion de libros</h1>
         <div class="row mb-5 d-flex align-items-center">
@@ -26,7 +28,7 @@ $books= (new Libro())->catalago();
                             <td><img height="100px" width="70px" src="../../images/catalogo/<?=htmlspecialchars($book->getPortada())?>" alt="Imagen de portada de:<?= htmlspecialchars($book->getNombre()) ?> "> </td>
                             <td><?=htmlspecialchars($book->getAutor())  ?> </td>
                             <td><?=htmlspecialchars($book->getNombre())  ?> </td>
-                            <td><?=htmlspecialchars($book->getGenre()) ?>  </td>
+                            <td><?=htmlspecialchars($book->getAllGenres()) ?>  </td>
                             <td><?=htmlspecialchars($book->getSinopsis())  ?> </td>
                             <td><?=htmlspecialchars($book->getPages())  ?> </td>
                             <td><?=htmlspecialchars($book->getPrice())  ?> </td>

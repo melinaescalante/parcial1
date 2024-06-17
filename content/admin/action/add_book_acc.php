@@ -15,6 +15,8 @@ try {
     foreach ($all_genres_id as $genre_id) {
         (new Libro())->addGenre($genre_id,$id_libro);
     }
+    (new Alerta())->add_alerta("Libro correctamente agregado", "success");
+    
     header("Location: ../index.php?view=manage_books");
 } catch (Exception $e) {
 

@@ -3,14 +3,18 @@ class Libro
 {
     protected $id;
     protected $nombre;
-    protected $autor_id;
-
+    // protected $autor_id;
+    protected $autor;
     protected $sinopsis;
     protected $portada;
     protected $pages;
     protected $price;
-    protected $editorial_id;
+    protected $editorial;
+    // protected $editorial_id;
     protected $genero;
+    protected $all_genres;
+
+    protected static $valoresDB = ["id", "nombre", "sinopsis", "portada", "pages", "price"];
     public function catalago()
     {
         $librosCatalogo = [];
@@ -18,18 +22,40 @@ class Libro
         $conexion = new Conexion();
         $conn = $conexion->getConexion();
         $query = 'SELECT libro.*,GROUP_CONCAT(genero.genero_tipo) AS genero FROM libro LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id JOIN genero on pivotxgeneroxlibro.genero_id= genero.id Group by libro.id';
-        // $query = 'SELECT * FROM libro';
+
         $PDOStament = $conn->prepare($query);
-        $PDOStament->setFetchMode(PDO::FETCH_CLASS, Libro::class);
+        $PDOStament->setFetchMode(PDO::FETCH_ASSOC);
         $PDOStament->execute();
         while ($libro = $PDOStament->fetch()) {
-            $librosCatalogo[] = $libro;
+            $librosCatalogo[] = $this->mapear($libro);
         }
 
         return $librosCatalogo;
 
     }
+    public function mapear($libroArrayAsociativo): Libro
+    {
+        $libro = new self();
 
+        foreach (self::$valoresDB as $valor) {
+            $libro->{$valor} = $libroArrayAsociativo[$valor];
+        }
+
+        $libro->autor = (new Autor())->buscar_x_id($libroArrayAsociativo["autor_id"]);
+        $libro->editorial = (new Editorial())->buscar_x_id($libroArrayAsociativo["editorial_id"]);
+
+        $genresId = explode(",", $libroArrayAsociativo["genero"]);
+        $all_genres = [];
+        if (!empty($genresId[0])) {
+            foreach ($genresId as $genreId) {
+                $all_genres[] = (new Genero())->buscar_x_nombre(($genreId));
+            }
+        }
+
+        $libro->all_genres = $libroArrayAsociativo["genero"];
+        $libro->genero = $all_genres;
+        return $libro;
+    }
     public function buscar_x_genero($genero)
     {
         $databookFound = [];
@@ -46,18 +72,20 @@ class Libro
                 )  GROUP BY libro.id';
 
         $PDOStament = $conn->prepare($query);
-        $PDOStament->setFetchMode(PDO::FETCH_CLASS, Libro::class);
-    
+        $PDOStament->setFetchMode(PDO::FETCH_ASSOC);
+
 
         $PDOStament->execute([
             "genero" => htmlspecialchars("%$genero%"),
         ]);
 
         while ($libro = $PDOStament->fetch()) {
-            $databookFound[] = $libro;
+
+            $databookFound[] =$this->mapear($libro);
         }
 
         return $databookFound;
+        
 
     }
     public function buscar_x_coincidencia($titulo)
@@ -65,7 +93,9 @@ class Libro
         $databookFound = [];
         $conexion = new Conexion();
         $conn = $conexion->getConexion();
-        $query = 'SELECT * FROM libro WHERE nombre LIKE :titulo';
+        $query = 'SELECT libro.*,GROUP_CONCAT(genero.genero_tipo) AS genero FROM libro LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id JOIN genero on pivotxgeneroxlibro.genero_id= genero.id where libro.nombre like :titulo Group by libro.id';
+        // SELECT * FROM libro WHERE nombre LIKE :titulo
+         
         $stmt = $conn->prepare($query);
 
         $tituloConPorcentajes = "%$titulo%";
@@ -78,7 +108,7 @@ class Libro
 
             $autor = (new Autor())->buscar_x_id($key["autor_id"]);
             $editorial = (new Editorial())->buscar_x_id($key["editorial_id"]);
-
+// print_r($databook);
             $data = [
                 'codeFound1' => $key["id"],
                 'nameFound1' => $key["nombre"],
@@ -87,7 +117,7 @@ class Libro
                 'imgFound1' => $key["portada"],
                 'pagesFound1' => $key["pages"],
                 'priceFound1' => $key["price"],
-                'genreFound1' => $databookFound["genero"], 
+                'genreFound1' => $key["genero"],
                 'editorialFound1' => $editorial->getEditorialNombre(),
             ];
             array_push($databookFound, $data);
@@ -102,11 +132,11 @@ class Libro
         $query = "SELECT libro.*,GROUP_CONCAT(genero.id) AS genero FROM libro LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id JOIN genero on pivotxgeneroxlibro.genero_id= genero.id WHERE libro.id=:code Group by libro.id";
 
         $PDOStatement = $conexion->prepare($query);
-        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $PDOStatement->setFetchMode(PDO::FETCH_ASSOC);
         $PDOStatement->execute(['code' => htmlspecialchars($code)]);
-        $resultado = $PDOStatement->fetch();
-
-        return isset($resultado) ? $resultado : null;
+        $libroArray = $PDOStatement->fetch();
+        $libro = $this->mapear($libroArray);
+        return isset($libro) ? $libro : null;
     }
     public function getPages()
     {
@@ -131,8 +161,8 @@ class Libro
 
     public function getAutor()
     {
-        $autor = (new Autor())->buscar_x_id($this->autor_id);
-        return $autor->getAutorNombre();
+
+        return $this->autor->getAutorNombre();
     }
     public function getNombre(): string
     {
@@ -145,8 +175,8 @@ class Libro
 
     public function getEditorial()
     {
-        $editorial = (new Editorial())->buscar_x_id($this->editorial_id);
-        return $editorial->getEditorialNombre();
+
+        return $this->editorial->getEditorialNombre();
     }
 
     public function setEditorialId($editorial_id): self
@@ -257,35 +287,43 @@ class Libro
             "editorial_id" => htmlspecialchars($editorial_id)
         ]);
     }
-public function addGenre(int $id_genre, int $id_libro): void{
-    $conexion = (new Conexion())->getConexion();
-    $query = "INSERT INTO pivotxgeneroxlibro VALUES (NULL, :id_genre, :id_libro)";
-    $PDOStament = $conexion->prepare($query);
-    $PDOStament->execute([
-        "id_genre"=>htmlspecialchars($id_genre),
-        "id_libro"=>htmlspecialchars($id_libro)
+    public function addGenre(int $id_genre, int $id_libro): void
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "INSERT INTO pivotxgeneroxlibro VALUES (NULL, :id_genre, :id_libro)";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute([
+            "id_genre" => htmlspecialchars($id_genre),
+            "id_libro" => htmlspecialchars($id_libro)
         ]);
 
-}
-public function delete_genre(int $id_libro): void{
-    $conexion = (new Conexion())->getConexion();
-    $query = "DELETE FROM pivotxgeneroxlibro WHERE libro_id = :id_libro";
-    $PDOStament = $conexion->prepare($query);
-    $PDOStament->execute([
-        "id_libro"=>htmlspecialchars($id_libro)
+    }
+    public function delete_genre(int $id_libro): void
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM pivotxgeneroxlibro WHERE libro_id = :id_libro";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute([
+            "id_libro" => htmlspecialchars($id_libro)
         ]);
 
-}
+    }
     public function getAutorId()
     {
-        return $this->autor_id;
-    }
+        // return $this->autor_id;
+        return $this->autor->getId();    }
 
 
     public function getEditorialId()
     {
-        return $this->editorial_id;
+        return $this->editorial->getId();
+        // return $this->editorial_id;
     }
 
+    public function getAllGenres()
+    {
 
+
+        return $this->all_genres;
+    }
 }

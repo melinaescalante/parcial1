@@ -49,4 +49,35 @@ class Genero
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute(["genero_tipo"=>htmlspecialchars($genero_tipo) ]);
     }
+    public function buscar_x_nombre($genero)
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "SELECT * FROM genero WHERE genero.genero_tipo = :genero";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $PDOStatement->execute(["genero"=>htmlspecialchars($genero) ]);
+        $resultado = $PDOStatement->fetch();
+
+        return isset($resultado) ? $resultado : null;
+    }
+    public function delete(): void
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM genero WHERE id = $this->id";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute();
+    }
+    public function buscar_x_id($genero)
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "SELECT * FROM genero WHERE id = :genero";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $PDOStatement->execute(["genero"=>htmlspecialchars($genero) ]);
+        $resultado = $PDOStatement->fetch();
+
+        return isset($resultado) ? $resultado : null;
+    }
 }
