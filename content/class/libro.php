@@ -108,7 +108,7 @@ class Libro
 
             $autor = (new Autor())->buscar_x_id($key["autor_id"]);
             $editorial = (new Editorial())->buscar_x_id($key["editorial_id"]);
-// print_r($databook);
+
             $data = [
                 'codeFound1' => $key["id"],
                 'nameFound1' => $key["nombre"],

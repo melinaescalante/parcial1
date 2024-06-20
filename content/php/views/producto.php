@@ -21,7 +21,17 @@ if ($_GET["view"] == "producto") {
             <div>
               <p class=" mt-4"><span class="fw-bold mt-4">Precio:</span> $<?= $bookFound[0]["priceFound1"]; ?></p>
             </div>
-            <button type="button" class="btn btn-outline-primary mt-3">COMPRAR</button>
+            <form action="/parcial1/content/admin/action/add_item_acc.php" method="post">
+              <div class="d-flex align-items-center">
+                <label for="cantidad" class="me-2">Cantidad</label>
+                <input class="form-control" style="max-width:60px;"type="number" id="cantidad" name="cantidad" value="1">
+                <input type="hidden" name="id" value="<?=$bookFound[0]["codeFound1"]?>">
+              </div>
+              <div>
+                <input class="btn btn-outline-primary mt-3" type="submit" value="COMPRAR">
+              </div>
+            </form>
+
           </div>
         </div>
       </div>
