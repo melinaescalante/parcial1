@@ -1,4 +1,5 @@
 <?php
+
 $editorials= (new Editorial())->all_editorials();
 ?>
 <?=(new Alerta())->get_alertas();?>

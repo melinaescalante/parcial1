@@ -1,4 +1,5 @@
 <?php
+
     $id = $_GET["id"] ?? FALSE;
     $Libro = (new Libro())->buscar_x_id($id);
 ?>

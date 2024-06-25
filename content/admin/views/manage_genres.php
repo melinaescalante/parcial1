@@ -1,6 +1,4 @@
-<?php
-$genres= (new Genero())->all_genres();
-?>
+
 <?=(new Alerta())->get_alertas();?>
 <div class=" container-xxl mx-auto container-fluid row my-5">
     <div class="col">

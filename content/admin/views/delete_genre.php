@@ -1,4 +1,5 @@
 <?php
+
     $id = $_GET["id"] ?? FALSE;
     $genre = (new Genero())->buscar_x_id($id);
 ?>

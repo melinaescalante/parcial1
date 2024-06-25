@@ -1,4 +1,5 @@
 <?php
+
 $id = $_GET["id"];
 $editorials = (new Editorial())->all_editorials();
 $autors = (new Autor())->all_autors();

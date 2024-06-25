@@ -18,10 +18,10 @@ try {
             header("Location: ../../../index.php");
 
         }
-    (new Alerta())->add_alerta("Se ha logeado correctamento", "success");
+    (new Alerta())->add_alerta("Se ha logeado correctamente", "success");
     
     } else {
-        (new Alerta())->add_alerta("Por favor registrese antes", "warning");
+        (new Alerta())->add_alerta("Por favor regístrese antes", "warning");
         header("Location: ../index.php?view=register");
     }
 } catch (Exception $e) {

@@ -1,4 +1,5 @@
 <?php
+
 $id = $_GET['id'];
 $editorial = (new Editorial())->buscar_x_id($id);
 ?>

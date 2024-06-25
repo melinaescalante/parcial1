@@ -1,4 +1,5 @@
 <?php
+
     $id = $_GET["id"] ?? FALSE;
     $editorial = (new Editorial())->buscar_x_id($id);
 ?>

@@ -1,3 +1,4 @@
+
 <form action="action/add_genre_acc.php" method="POST"
     class="container form-autor row d-flex flex-column align-items-md-center">
     <h1 class="text-center mt-4 mb-4">Agregá un género</h1>

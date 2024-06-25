@@ -1,4 +1,5 @@
 <?php
+
     $id = $_GET["id"] ?? FALSE;
     $autor = (new Autor())->buscar_x_id($id);
 ?>
