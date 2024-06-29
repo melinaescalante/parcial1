@@ -38,7 +38,7 @@ class Usuario
             'pass' => $paswordHash,
             'rol' => htmlspecialchars($rol)
         ]);
-        // return $conexion->lastInsertId();
+
     }
     public function usuario_x_email(string $email)
     {
@@ -61,7 +61,7 @@ class Usuario
     {
         if ($_SESSION['login']['rol'] !== 'admin') {
          
-            header("Location:/parcial1/index.php?view=quienesSomos");
+            header("Location:../index.php?view=quienesSomos");
         }
     }
 

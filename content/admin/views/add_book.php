@@ -4,10 +4,10 @@ $autors = (new Autor())->all_autors();
 $generos = (new Genero())->all_genres();
 
 ?>
+<h1 class="text-center mb-3 mt-5">Agregá un libro</h1>
 <form action="action/add_book_acc.php" method="POST" enctype="multipart/form-data"
-    class="container form-autor row d-flex flex-column align-items-center">
-    <h1 class="text-center m-4">Agregá un libro</h1>
-    <div class="form-group col-12 col-lg-4 col-md-6 mt-4">
+    class="container form-autor row d-flex flex-column justify-content-center align-items-center">
+    <div class=" d-flex flex-column form-group col-11 col-lg-4 col-md-6">
         <label class="mb-2 mt-2" for="nombre">Nombre del Libro:</label>
         <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
         <label class="mb-2 mt-2" for="autor_id">Autor Id:</label>
@@ -28,7 +28,7 @@ $generos = (new Genero())->all_genres();
             <?php foreach ($generos as $genero) { ?>
                 <div>
 
-                    <input type="checkbox" name="generos[]" id="<?= $genero->getId() ?>" value="<?= $genero->getId() ?>" required>
+                    <input type="checkbox" name="generos[]" id="<?= $genero->getId() ?>" value="<?= $genero->getId() ?>" >
                     <label for="<?= $genero->getId() ?>"><?= $genero->getGeneroTipo() ?></label>
                     </div>
                     <?php

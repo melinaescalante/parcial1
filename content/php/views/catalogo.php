@@ -1,9 +1,7 @@
 <?php
 require_once "./index.php";
 $librosObjeto = (new Libro())->catalago();
-// echo "<pre>";
-// print_r($librosObjeto);
-// echo "</pre>";
+
 
 $Libros = $librosObjeto;
 $tituloGenero = "";
@@ -21,7 +19,7 @@ if ($generoElegido != "") {
         <div class="contenedor-head">
             <h1 class="mt-5 mb-4 text-star col-12">Elegí tu libro</h1>
             <div class="form-container">
-                <form action="index.php" method="GET" class="d-flex col-12 col-md-6 col-lg-4" role="search">
+                <form action="index.php" method="GET" class="d-flex col-11 col-md-6 col-lg-4" role="search">
                     <input class="form-control me-2" type="search" placeholder="Ingrese titulo" aria-label="Search"
                         id="title" name="title">
                     <input type="hidden" name="view" value="busqueda">

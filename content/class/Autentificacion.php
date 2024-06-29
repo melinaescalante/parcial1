@@ -33,13 +33,5 @@ class Autentificacion{
             unset($_SESSION["login"]); 
         }
     }
-    public function verify($login):bool{
-        if(isset($_SESSION["login"]) 
-            && ($_SESSION["login"]["rol"] == "admin") 
-        ){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    
 }

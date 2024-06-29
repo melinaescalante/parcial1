@@ -1,8 +1,6 @@
 <?php $miCarrito = new Carrito();
 $items = $miCarrito->getCarrito();
-// echo "<pre>";
-// print_r($items);
-// echo "</pre>";
+
 ?>
 <?= (new Alerta())->get_alertas() ?>
 <div class="container">
@@ -15,6 +13,8 @@ $items = $miCarrito->getCarrito();
 
                 ?>
                 <form action="action/actualizarCarrito.php" method="post">
+<div class="table-responsive">
+
 
                     <table class="table">
                         <thead>
@@ -57,6 +57,7 @@ $items = $miCarrito->getCarrito();
                         } ?>
                         </tbody>
                     </table>
+                    </div>
                     <div>
                         <a href="content/admin/action/vaciar_carrito_acc.php" class="btn btn-danger">Vaciar Carrito</a>
                         <?php

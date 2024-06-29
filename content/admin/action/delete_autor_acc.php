@@ -13,6 +13,7 @@ require_once '../../functions/autoload.php';
         }
     } catch (Exception $e) {
 
-        echo $e->getMessage();
+        (new Alerta())->add_alerta("Primero debes eliminar los libros relacionados a este autor antes de eliminarlo.", "danger");
+        header("Location: ../index.php?view=manage_autors");
        
     }

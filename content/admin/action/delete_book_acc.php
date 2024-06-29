@@ -14,7 +14,8 @@ try {
         throw new Exception("No tengo id");
     }
 } catch (Exception $e) {
-
+    (new Alerta())->add_alerta("Libro no se ha podido eliminar", "danger");
+    header("Location: ../index.php?view=manage_books");
     echo $e->getMessage();
   
 }

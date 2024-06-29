@@ -11,7 +11,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row justify-content-around">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-around">
 
 
             <li class="nav-item">

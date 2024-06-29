@@ -24,7 +24,7 @@ $books = (new Libro())->catalago();
                             <th scope="col">Páginas</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Editorial</th>
-                            <th scope="col">Acciones</th>
+
                         </tr>
                     </thead>
                     <tbody>

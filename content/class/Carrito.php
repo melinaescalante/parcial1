@@ -1,5 +1,5 @@
 <?php
-// Deberia pushear datosa db al finalizar compra
+// Deberia pushear datos a db al finalizar compra para el final
 class Carrito
 {
     // Agregar item
@@ -20,7 +20,7 @@ class Carrito
             }
         }
     }
-    // Eliminar item
+  
     // Devolver todo el carrito
     public function getCarrito()
     {
@@ -46,7 +46,7 @@ class Carrito
         }
     }
 
-    // Vaciar carrito total
+    // Vaciar carrito total o de finalizar compra
     public function deleteCarrito()
     {
         $_SESSION["carrito"] = [];

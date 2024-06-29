@@ -26,7 +26,7 @@ margin: 0 auto;
     margin-bottom: 40px;
 }
 .navbar h1 a {
-    background-image: url(http://localhost/parcial1/images/logo1.png) ;
+    background-image: url(/images/logo1.png) ;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain!important;
@@ -155,6 +155,7 @@ footer ul{
     align-items: center;
     justify-content: center;
     margin: 0;
+    padding: 0;
 
 }
 footer li{

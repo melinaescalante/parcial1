@@ -3,14 +3,14 @@ class Libro
 {
     protected $id;
     protected $nombre;
-    // protected $autor_id;
+   
     protected $autor;
     protected $sinopsis;
     protected $portada;
     protected $pages;
     protected $price;
     protected $editorial;
-    // protected $editorial_id;
+
     protected $genero;
     protected $all_genres;
 
@@ -323,7 +323,6 @@ GROUP BY libro.id;';
     }
     public function getAutorId()
     {
-        // return $this->autor_id;
         return $this->autor->getId();
     }
 
@@ -331,7 +330,7 @@ GROUP BY libro.id;';
     public function getEditorialId()
     {
         return $this->editorial->getId();
-        // return $this->editorial_id;
+
     }
 
     public function getAllGenres()
