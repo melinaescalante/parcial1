@@ -1,25 +1,41 @@
 <?php
 
-class Conexion{
-    protected const DB_SERVER ="localhost";
-    protected const DB_USER="root";
-    protected const DB_PASS="";
-    protected const DB_NAME="la_casa_del_libro";
-    protected const DB_DSN = "mysql:host=".self::DB_SERVER.";dbname=".self::DB_NAME.";charset=utf8mb4";
-   
+class Conexion
+{
+    protected const DB_SERVER = "localhost";
+    protected const DB_USER = "root";
+    protected const DB_PASS = "";
+    protected const DB_NAME = "la_casa_del_libro";
+    protected const DB_DSN = "mysql:host=" . self::DB_SERVER . ";dbname=" . self::DB_NAME . ";charset=utf8mb4";
 
-    protected PDO $base_de_datos;
 
-    public function __construct(){
+
+    protected static ?PDO $base_de_datos = null;
+    protected static $conexiones = 0;
+
+
+    public static function conectar()
+    {
         try {
-            $this->base_de_datos = new PDO(self::DB_DSN, self::DB_USER, self::DB_PASS);
-            
+            self::$base_de_datos = new PDO(self::DB_DSN, self::DB_USER, self::DB_PASS);
+            echo "Cree una conexion!";
+            echo ++self::$conexiones;
         } catch (Exception $e) {
             die("No me pude conectar");
-        }  
+        }
     }
-
-    public function getConexion(){
-        return $this->base_de_datos;
+    public static function getConexion()
+    {
+        if (self::$base_de_datos == null) {
+            self::conectar();
+        }
+        return self::$base_de_datos;
     }
 }
+
+
+
+
+
+
+

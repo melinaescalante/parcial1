@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-06-2024 a las 01:10:21
+-- Tiempo de generación: 26-06-2024 a las 12:41:31
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -79,7 +79,8 @@ INSERT INTO `editorial` (`id`, `editorial_nombre`) VALUES
 (8, 'Lumen'),
 (9, 'Crossbooks'),
 (10, 'DelBolsillo'),
-(11, 'Salamandra');
+(11, 'Salamandra'),
+(19, 'ASDSAD');
 
 -- --------------------------------------------------------
 
@@ -201,7 +202,8 @@ INSERT INTO `usuario` (`id`, `nombre_completo`, `email`, `password`, `rol`) VALU
 (3, 'melina escalante', 'admin@gmail.com', '$2y$10$nHTGXLhhcgFG7k8oOJLGx.OqdR/Ib1ejtfYZVln3BXdMkttVJ3WyW', 'admin'),
 (4, 'fede', 'fede@gmail.com', '$2y$10$.Z.XFZe10OQEIoPckhdn1OpMQjrbi51unrzShbWThpTLQs8cH9Iau', 'admin'),
 (5, 'fed', 'admin@gmai.com', '$2y$10$WkQ.C53TzO4sMoE/6xwj8.Fraz9YluxNdZWBbYWxCuK8VGmUHTUC6', 'usuario'),
-(6, 'fede usuario', 'lio@gmail', '$2y$10$KRvyZ6t7hsCsmUsoDztS1ev2Ma05Y6iiZhQdgXSJkuNXZSfr0Ck4G', 'usuario');
+(6, 'fede usuario', 'lio@gmail', '$2y$10$KRvyZ6t7hsCsmUsoDztS1ev2Ma05Y6iiZhQdgXSJkuNXZSfr0Ck4G', 'usuario'),
+(7, 'Melina', 'm@gmail.com', '$2y$10$OrY9IoEb03vh1/GxV.mcKeTUL.GnAHso4NdgyymxgD528SuYbhZxy', 'usuario');
 
 --
 -- Índices para tablas volcadas
@@ -261,7 +263,7 @@ ALTER TABLE `autor`
 -- AUTO_INCREMENT de la tabla `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `genero`
@@ -285,7 +287,7 @@ ALTER TABLE `pivotxgeneroxlibro`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
