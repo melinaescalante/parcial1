@@ -11,7 +11,7 @@ $editorial = (new Editorial())->buscar_x_id($id);
         <label class="form-label mt-3 mb-3" for="nombre">Nombre de la Editorial</label>
         <input type="text" class="form-control mb-4" id="nombre" name="nombre" value="<?= htmlspecialchars($editorial->getEditorialNombre())  ?>">
 
-        <button type="submit" class="btn btn-primary">Editar Autor</button>
+        <button type="submit" class="btn btn-primary">Editar Editorial</button>
     </div>
 
     

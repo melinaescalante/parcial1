@@ -1,3 +1,4 @@
+<?= (new Alerta())->get_alertas() ?>
 
 
 <div class="container form-autor row d-flex flex-column">

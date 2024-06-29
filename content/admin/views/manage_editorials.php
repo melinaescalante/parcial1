@@ -4,7 +4,7 @@ $editorials= (new Editorial())->all_editorials();
 ?>
 <?=(new Alerta())->get_alertas();?>
 <div class=" container-xxl mx-auto container-fluid row my-5">
-    <div class="col">
+    <div>
         <h1 class="text-center mb-5 fw-bold">Administracion de editoriales</h1>
         <div class="row mb-5 d-flex align-items-center">
             <table class="table">

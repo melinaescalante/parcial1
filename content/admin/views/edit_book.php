@@ -22,6 +22,7 @@ $generos = (new Genero())->all_genres();
             <option selected disabled>Elija su Autor</option>
             <?php
             foreach ($autors as $autor) { ?>
+            
                 <option <?= $autor->getId() == $libro->getAutorId() ? "selected" : "" ?> value="<?=htmlspecialchars( $autor->getId())  ?>">
                     <?=htmlspecialchars( $autor->getAutorNombre())  ?>
                 </option>

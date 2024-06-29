@@ -21,7 +21,12 @@ class Libro
 
         $conexion = new Conexion();
         $conn = $conexion->getConexion();
-        $query = 'SELECT libro.*,GROUP_CONCAT(genero.genero_tipo) AS genero FROM libro LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id JOIN genero on pivotxgeneroxlibro.genero_id= genero.id Group by libro.id';
+        $query = 'SELECT libro.*, 
+       GROUP_CONCAT(genero.genero_tipo) AS genero 
+FROM libro 
+LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id 
+LEFT JOIN genero ON pivotxgeneroxlibro.genero_id = genero.id 
+GROUP BY libro.id;';
 
         $PDOStament = $conn->prepare($query);
         $PDOStament->setFetchMode(PDO::FETCH_ASSOC);
@@ -29,6 +34,7 @@ class Libro
         while ($libro = $PDOStament->fetch()) {
             $librosCatalogo[] = $this->mapear($libro);
         }
+
 
         return $librosCatalogo;
 
@@ -81,11 +87,11 @@ class Libro
 
         while ($libro = $PDOStament->fetch()) {
 
-            $databookFound[] =$this->mapear($libro);
+            $databookFound[] = $this->mapear($libro);
         }
 
         return $databookFound;
-        
+
 
     }
     public function buscar_x_coincidencia($titulo)
@@ -94,8 +100,7 @@ class Libro
         $conexion = new Conexion();
         $conn = $conexion->getConexion();
         $query = 'SELECT libro.*,GROUP_CONCAT(genero.genero_tipo) AS genero FROM libro LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id JOIN genero on pivotxgeneroxlibro.genero_id= genero.id where libro.nombre like :titulo Group by libro.id';
-        // SELECT * FROM libro WHERE nombre LIKE :titulo
-         
+
         $stmt = $conn->prepare($query);
 
         $tituloConPorcentajes = "%$titulo%";
@@ -129,13 +134,21 @@ class Libro
     public function buscar_x_id($code)
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "SELECT libro.*,GROUP_CONCAT(genero.id) AS genero FROM libro LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id JOIN genero on pivotxgeneroxlibro.genero_id= genero.id WHERE libro.id=:code Group by libro.id";
+        $query = "SELECT libro.*, 
+        GROUP_CONCAT(genero.id) AS genero 
+        FROM libro 
+        LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id 
+        LEFT JOIN genero ON pivotxgeneroxlibro.genero_id = genero.id 
+        WHERE libro.id = :code 
+        GROUP BY libro.id;
+        ";  
 
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_ASSOC);
         $PDOStatement->execute(['code' => htmlspecialchars($code)]);
         $libroArray = $PDOStatement->fetch();
         $libro = $this->mapear($libroArray);
+
         return isset($libro) ? $libro : null;
     }
     public function getPages()
@@ -311,7 +324,8 @@ class Libro
     public function getAutorId()
     {
         // return $this->autor_id;
-        return $this->autor->getId();    }
+        return $this->autor->getId();
+    }
 
 
     public function getEditorialId()

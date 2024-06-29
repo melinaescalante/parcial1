@@ -14,7 +14,7 @@ require_once 'html/nav.php';
 ?>
 <main>
     <?php 
-if ($view!=='login' && $view!=='register') {
+if ($view!=='login' && $view!=='register' && $view!=='checkout') {
     (new Usuario())->check_role($_SESSION['login']);
 
 }

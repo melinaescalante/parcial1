@@ -12,6 +12,7 @@ try {
 
     }else{
         (new Usuario())->insert($nombre, $email,$pass,"usuario");
+        (new Alerta())->add_alerta("Se ha registrado correctamente", "success");
         header("Location: ../index.php?view=login");
         
     }

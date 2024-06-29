@@ -41,24 +41,15 @@ class Carrito
                 $_SESSION["carrito"][$id]["cantidad"]--;
             } elseif($_SESSION["carrito"][$id]["cantidad"]= 1){
                 unset($_SESSION["carrito"][$id]);
+                (new Alerta())->add_alerta("No tienes nada en tu carrito", "warning");
             }
         }
     }
 
-    // Actualizar cantidades
-    public function updateCarrito($array)
-    {
-        foreach ($array as $id => $cantidad) {
-            if ($_SESSION["carrito"][$id]) {
-
-                $_SESSION["carrito"][$id]["cantidad"] = $cantidad;
-            }
-        }
-    }
-    // Vaciar carrito
+    // Vaciar carrito total
     public function deleteCarrito()
     {
         $_SESSION["carrito"] = [];
     }
-    // Precio total
+
 }

@@ -9,7 +9,7 @@ $generos = (new Genero())->all_genres();
     <h1 class="text-center m-4">Agregá un libro</h1>
     <div class="form-group col-12 col-lg-4 col-md-6 mt-4">
         <label class="mb-2 mt-2" for="nombre">Nombre del Libro:</label>
-        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre">
+        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
         <label class="mb-2 mt-2" for="autor_id">Autor Id:</label>
         <select class="form-select" name="autor_id" id="autor_id">
             <option selected disabled>Elija su Autor</option>
@@ -20,7 +20,7 @@ $generos = (new Genero())->all_genres();
                 <?php
             }
             ?>
-        </select>
+        </select required>
         <label class="mb-2 mt-2" for="genero">
             Género/s:</label>
         <div class="d-flex flex-column">
@@ -28,7 +28,7 @@ $generos = (new Genero())->all_genres();
             <?php foreach ($generos as $genero) { ?>
                 <div>
 
-                    <input type="checkbox" name="generos[]" id="<?= $genero->getId() ?>" value="<?= $genero->getId() ?>">
+                    <input type="checkbox" name="generos[]" id="<?= $genero->getId() ?>" value="<?= $genero->getId() ?>" required>
                     <label for="<?= $genero->getId() ?>"><?= $genero->getGeneroTipo() ?></label>
                     </div>
                     <?php
@@ -37,11 +37,11 @@ $generos = (new Genero())->all_genres();
         <label class="mb-2 mt-2" for="sinopsis">Sinopsis:</label>
         <input type="text" class="form-control" name="sinopsis" id="sinopsis" placeholder="Sinopsis">
         <label class="mb-2 mt-2" for="portada">Portada Libro:</label>
-        <input type="file" class="form-control" name="portada" id="portada">
+        <input type="file" class="form-control" name="portada" id="portada" required>
         <label class="mb-2 mt-2" for="pages">Páginas totales:</label>
-        <input type="text" class="form-control" name="pages" id="pages" placeholder="Páginas">
+        <input type="text" class="form-control" name="pages" id="pages" placeholder="Páginas" required>
         <label class="mb-2 mt-2" for="price">Precio:</label>
-        <input type="text" class="form-control" name="price" id="price" placeholder="Precio">
+        <input type="text" class="form-control" name="price" id="price" placeholder="Precio" required>
         <label class="mb-2 mt-2" for="editorial_id">Editorial Id:</label>
         <select class="form-select" name="editorial_id" id="editorial_id">
             <option selected disabled>Elija su editorial</option>

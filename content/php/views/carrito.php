@@ -59,6 +59,20 @@ $items = $miCarrito->getCarrito();
                     </table>
                     <div>
                         <a href="content/admin/action/vaciar_carrito_acc.php" class="btn btn-danger">Vaciar Carrito</a>
+                        <?php
+                        if (!isset($_SESSION["login"])) {
+                    
+                            ?>
+                            <a href="content/admin/index.php?view=login" class="btn btn-primary">Iniciar Sesion</a>
+                            <?php }?>
+                        <?php
+                        if (isset($_SESSION["login"])) {
+                    
+                            ?>
+                           
+                            <a href="content/admin/index.php?view=checkout" class="btn btn-success">Finalizar compra</a>
+                            <?php }?>
+                       
                     </div>
                 </form>
             <?php } else { ?>

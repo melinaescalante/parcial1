@@ -80,4 +80,14 @@ class Genero
 
         return isset($resultado) ? $resultado : null;
     }
+    public function update(string $genero_tipo, int $id): void {
+        $conexion=(new Conexion())->getConexion();
+
+        $query = "UPDATE genero SET genero_tipo = :genero_tipo WHERE id = :id;";
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute([
+            "genero_tipo" => htmlspecialchars($genero_tipo),
+            "id" => htmlspecialchars($id),
+        ]);
+    }
 }
