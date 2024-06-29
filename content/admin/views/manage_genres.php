@@ -6,7 +6,7 @@ $genres= (new Genero())->all_genres();
 <div class=" container-xxl mx-auto container-fluid row my-5">
     <div>
         <h1 class="text-center mb-5 fw-bold">Administracion de géneros</h1>
-        <div class="row mb-5 d-flex align-items-center">
+        <div class="row mb-5 d-flex align-items-center justify-content-center">
             <table class="table">
                 <thead>
                     <tr>
@@ -30,7 +30,7 @@ $genres= (new Genero())->all_genres();
                     <?php } ?>
                 </tbody>
             </table>
-            <a href="index.php?view=add_genre" class="btn btn-primary mt-5">Agregar género</a>
+            <a style="max-width:50%!important;" href="index.php?view=add_genre" class="btn btn-primary mt-5">Agregar género</a>
         </div>
     </div>
 </div>

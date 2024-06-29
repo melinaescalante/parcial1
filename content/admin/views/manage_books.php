@@ -57,7 +57,7 @@ $books = (new Libro())->catalago();
             </div>
         </div>
 
-        <a href="index.php?view=add_book" class="btn btn-primary mt-5">Agregar Libro</a>
+        <a style="max-width:50%!important;" href="index.php?view=add_book" class="btn btn-primary mt-5">Agregar Libro</a>
     </div>
 
 </div>

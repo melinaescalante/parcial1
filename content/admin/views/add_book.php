@@ -39,9 +39,9 @@ $generos = (new Genero())->all_genres();
         <label class="mb-2 mt-2" for="portada">Portada Libro:</label>
         <input type="file" class="form-control" name="portada" id="portada" required>
         <label class="mb-2 mt-2" for="pages">Páginas totales:</label>
-        <input type="text" class="form-control" name="pages" id="pages" placeholder="Páginas" required>
+        <input type="number" class="form-control" name="pages" id="pages" placeholder="Páginas" required>
         <label class="mb-2 mt-2" for="price">Precio:</label>
-        <input type="text" class="form-control" name="price" id="price" placeholder="Precio" required>
+        <input type="number" class="form-control" name="price" id="price" placeholder="Precio" required>
         <label class="mb-2 mt-2" for="editorial_id">Editorial Id:</label>
         <select class="form-select" name="editorial_id" id="editorial_id">
             <option selected disabled>Elija su editorial</option>

@@ -6,7 +6,7 @@ $autores= (new Autor())->all_autors();
 <div class="container-fluid container-xxl mx-auto row my-5">
     <div>
         <h1 class="text-center mb-5 fw-bold">Administracion de autores</h1>
-        <div class="row mb-5 d-flex align-items-center">
+        <div class="row mb-5 d-flex align-items-center justify-content-center">
             <table class="table">
                 <thead>
                     <tr>
@@ -31,7 +31,7 @@ $autores= (new Autor())->all_autors();
                     <?php } ?>
                 </tbody>
             </table>
-            <a href="index.php?view=add_autor" class="btn btn-primary mt-5">Agregar Autor</a>
+            <a style="max-width:50%!important;" href="index.php?view=add_autor" class="btn btn-primary mt-5">Agregar Autor</a>
         </div>
     </div>
 </div>

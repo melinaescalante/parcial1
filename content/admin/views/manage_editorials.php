@@ -30,7 +30,7 @@ $editorials= (new Editorial())->all_editorials();
                     <?php } ?>
                 </tbody>
             </table>
-            <a href="index.php?view=add_editorial" class="btn btn-primary mt-5">Agregar Editorial</a>
+            <a style="max-width:50%!important;" href="index.php?view=add_editorial" class="btn btn-primary mt-5">Agregar Editorial</a>
         </div>
     </div>
 </div>
