@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-06-2024 a las 12:41:31
+-- Tiempo de generación: 30-06-2024 a las 01:35:46
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -79,8 +79,7 @@ INSERT INTO `editorial` (`id`, `editorial_nombre`) VALUES
 (8, 'Lumen'),
 (9, 'Crossbooks'),
 (10, 'DelBolsillo'),
-(11, 'Salamandra'),
-(19, 'ASDSAD');
+(11, 'Salamandra');
 
 -- --------------------------------------------------------
 
@@ -200,10 +199,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nombre_completo`, `email`, `password`, `rol`) VALUES
 (3, 'melina escalante', 'admin@gmail.com', '$2y$10$nHTGXLhhcgFG7k8oOJLGx.OqdR/Ib1ejtfYZVln3BXdMkttVJ3WyW', 'admin'),
-(4, 'fede', 'fede@gmail.com', '$2y$10$.Z.XFZe10OQEIoPckhdn1OpMQjrbi51unrzShbWThpTLQs8cH9Iau', 'admin'),
-(5, 'fed', 'admin@gmai.com', '$2y$10$WkQ.C53TzO4sMoE/6xwj8.Fraz9YluxNdZWBbYWxCuK8VGmUHTUC6', 'usuario'),
-(6, 'fede usuario', 'lio@gmail', '$2y$10$KRvyZ6t7hsCsmUsoDztS1ev2Ma05Y6iiZhQdgXSJkuNXZSfr0Ck4G', 'usuario'),
-(7, 'Melina', 'm@gmail.com', '$2y$10$OrY9IoEb03vh1/GxV.mcKeTUL.GnAHso4NdgyymxgD528SuYbhZxy', 'usuario');
+(10, 'Melina Escalante', 'melina@gmail.com', '$2y$10$Fe4lsh16Qqj/O37DdLq72epMASQLWaXMg/Qz8mjOGdn4xL6frZ.TS', 'usuario');
 
 --
 -- Índices para tablas volcadas
@@ -257,37 +253,37 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `pivotxgeneroxlibro`
 --
 ALTER TABLE `pivotxgeneroxlibro`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

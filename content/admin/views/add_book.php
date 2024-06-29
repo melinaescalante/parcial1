@@ -43,7 +43,7 @@ $generos = (new Genero())->all_genres();
         <label class="mb-2 mt-2" for="price">Precio:</label>
         <input type="number" class="form-control" name="price" id="price" placeholder="Precio" required>
         <label class="mb-2 mt-2" for="editorial_id">Editorial Id:</label>
-        <select class="form-select" name="editorial_id" id="editorial_id">
+        <select class="form-select" name="editorial_id" id="editorial_id" required>
             <option selected disabled>Elija su editorial</option>
             <?php
             foreach ($editorials as $editorial) { ?>

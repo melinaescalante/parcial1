@@ -6,7 +6,7 @@ $editorials= (new Editorial())->all_editorials();
 <div class=" container-xxl mx-auto container-fluid row my-5">
     <div>
         <h1 class="text-center mb-5 fw-bold">Administracion de editoriales</h1>
-        <div class="row mb-5 d-flex align-items-center">
+        <div class="row mb-5 d-flex align-items-center justify-content-center">
             <table class="table">
                 <thead>
                     <tr>
