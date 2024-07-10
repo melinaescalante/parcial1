@@ -32,6 +32,9 @@ require_once "../functions/autoload.php";
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="index.php?view=manage_books">Libros</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.php?view=manage_users">Usuarios</a>
+            </li>
             
           <?php } else{ 
             ?>

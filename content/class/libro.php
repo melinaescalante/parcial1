@@ -3,7 +3,7 @@ class Libro
 {
     protected $id;
     protected $nombre;
-   
+
     protected $autor;
     protected $sinopsis;
     protected $portada;
@@ -18,7 +18,6 @@ class Libro
     public function catalago()
     {
         $librosCatalogo = [];
-
         $conexion = new Conexion();
         $conn = $conexion->getConexion();
         $query = 'SELECT libro.*, 
@@ -141,7 +140,7 @@ GROUP BY libro.id;';
         LEFT JOIN genero ON pivotxgeneroxlibro.genero_id = genero.id 
         WHERE libro.id = :code 
         GROUP BY libro.id;
-        ";  
+        ";
 
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_ASSOC);
