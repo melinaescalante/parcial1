@@ -6,9 +6,9 @@ class Carrito
     public function addItem(int $productoId, int $cantidad)
     {
         $libro = (new Libro())->buscar_x_id($productoId);
-        if(isset($_SESSION["carrito"][$productoId])){
+        if (isset($_SESSION["carrito"][$productoId])) {
             $_SESSION["carrito"][$productoId]["cantidad"] += $cantidad;
-        }else{
+        } else {
 
             if ($libro) {
                 $_SESSION["carrito"][$productoId] = [
@@ -20,7 +20,7 @@ class Carrito
             }
         }
     }
-  
+
     // Devolver todo el carrito
     public function getCarrito()
     {
@@ -39,7 +39,7 @@ class Carrito
             if ($_SESSION["carrito"][$id]["cantidad"] > 1) {
 
                 $_SESSION["carrito"][$id]["cantidad"]--;
-            } elseif($_SESSION["carrito"][$id]["cantidad"]= 1){
+            } elseif ($_SESSION["carrito"][$id]["cantidad"] = 1) {
                 unset($_SESSION["carrito"][$id]);
                 (new Alerta())->add_alerta("No tienes nada en tu carrito", "warning");
             }
@@ -51,5 +51,15 @@ class Carrito
     {
         $_SESSION["carrito"] = [];
     }
-
+    public function insert(int $idLibro, int $quantity): void
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "INSERT INTO purchases VALUES (NULL,:idLibro,:quantity);";
+        
+        $PDOStament = $conexion->prepare($query);
+        $PDOStament->execute([
+            'idLibro' => htmlspecialchars($idLibro),
+            'quantity' => htmlspecialchars($quantity)
+        ]);
+    }
 }
