@@ -1,5 +1,5 @@
 <?php
-// Deberia pushear datos a db al finalizar compra para el final
+
 class Carrito
 {
     // Agregar item
@@ -25,7 +25,7 @@ class Carrito
     public function getCarrito()
     {
         if (isset($_SESSION["carrito"])) {
-            return ($_SESSION["carrito"]);
+            return $_SESSION["carrito"];
         } else {
             return [];
         }
@@ -33,8 +33,8 @@ class Carrito
     // Eliminar un item
     public function deleteItem($id)
     {
-        print_r(($id));
-        print_r(($_SESSION["carrito"][$id]));
+        print_r($id);
+        print_r($_SESSION["carrito"][$id]);
         if (isset($_SESSION["carrito"][$id])) {
             if ($_SESSION["carrito"][$id]["cantidad"] > 1) {
 
@@ -51,26 +51,29 @@ class Carrito
     {
         $_SESSION["carrito"] = [];
     }
-    public function insert(int $idLibro, int $quantity): void
+    public function insert(int $id_user, int $idLibro, int $quantity, float|int $price, $date): void
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "INSERT INTO purchases VALUES (NULL,:idLibro,:quantity);";
+        $query = "INSERT INTO pivotxpurchasesxuser VALUES (NULL,:id_user,:quantity,:idLibro,:price,:date);";
         
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute([
+            'id_user' => htmlspecialchars($id_user),
             'idLibro' => htmlspecialchars($idLibro),
-            'quantity' => htmlspecialchars($quantity)
+            'quantity' => htmlspecialchars($quantity),
+            'price' => htmlspecialchars($price),
+            'date' => htmlspecialchars($date)
         ]);
     }
-    public function addPurchase(int $id_user, int $id_purchase): void
-    {
-        $conexion = (new Conexion())->getConexion();
-        $query = "INSERT INTO pivotxpurchasesxuser VALUES (NULL, :id_user, :id_libro)";
-        $PDOStament = $conexion->prepare($query);
-        $PDOStament->execute([
-            "id_user" => htmlspecialchars($id_user),
-            "id_purchase" => htmlspecialchars($id_purchase)
-        ]);
+    // public function addPurchase(int $id_user, int $id_purchase): void
+    // {
+    //     $conexion = (new Conexion())->getConexion();
+    //     $query = "INSERT INTO pivotxpurchasesxuser VALUES (NULL, :id_user, :id_libro)";
+    //     $PDOStament = $conexion->prepare($query);
+    //     $PDOStament->execute([
+    //         "id_user" => htmlspecialchars($id_user),
+    //         "id_purchase" => htmlspecialchars($id_purchase)
+    //     ]);
 
-    }
+    // }
 }
