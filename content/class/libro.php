@@ -22,10 +22,10 @@ class Libro
         $conn = $conexion->getConexion();
         $query = 'SELECT libro.*, 
        GROUP_CONCAT(genero.genero_tipo) AS genero 
-FROM libro 
-LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id 
-LEFT JOIN genero ON pivotxgeneroxlibro.genero_id = genero.id 
-GROUP BY libro.id;';
+        FROM libro 
+        LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id 
+        LEFT JOIN genero ON pivotxgeneroxlibro.genero_id = genero.id 
+        GROUP BY libro.id;';
 
         $PDOStament = $conn->prepare($query);
         $PDOStament->setFetchMode(PDO::FETCH_ASSOC);
