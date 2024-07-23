@@ -4,21 +4,22 @@ class Purchases
     protected $id;
     protected $id_user;
     protected $quantity;
-    protected $id_libro;
+    // protected $id_libro;
     protected $price;
     protected $date;
-    protected static $valoresDB = ["id", "quantity","price", "date"];
-    
+    protected $librosComprados;
+    protected static $valoresDB = ["id", "quantity", "price", "date"];
+
     public function compras_x_usuario($id)
     {
         $allPurchases = [];
         $conexion = new Conexion();
         $conn = $conexion->getConexion();
-        $query = 'SELECT pivotxpurchasesxuser.*, usuario.*,GROUP_CONCAT(pivotxpurchasesxuser.id_libro) AS librosComprados,GROUP_CONCAT(pivotxpurchasesxuser.quantity) AS cantidadDeLibros FROM `pivotxpurchasesxuser` LEFT JOIN libro ON libro.id = pivotxpurchasesxuser.id_libro INNER JOIN usuario ON pivotxpurchasesxuser.id_user = :id';
+        $query = 'SELECT pivotxpurchasesxuser.*, usuario.*,GROUP_CONCAT(pivotxpurchasesxuser.id_libro) AS librosComprados,GROUP_CONCAT(pivotxpurchasesxuser.quantity) AS cantidadDeLibros FROM pivotxpurchasesxuser LEFT JOIN libro ON libro.id = pivotxpurchasesxuser.id_libro INNER JOIN usuario ON pivotxpurchasesxuser.id_user = :id GROUP BY usuario.id;';
 
         $PDOStament = $conn->prepare($query);
         $PDOStament->setFetchMode(PDO::FETCH_ASSOC);
-        $PDOStament->execute();
+        $PDOStament->execute(["id" => htmlspecialchars($id)]);
         while ($purchase = $PDOStament->fetch()) {
             $allPurchases[] = $this->mapear($purchase);
         }
@@ -30,26 +31,38 @@ class Purchases
     public function mapear($purchaseArrayAsociativo): Purchases
     {
         $purchase = new self();
-
+    
         foreach (self::$valoresDB as $valor) {
-            $purchase->{$valor} = $purchaseArrayAsociativo[$valor];
-        }
-
-        $purchase->id_user = (new Usuario())->buscar_x_id($purchaseArrayAsociativo["id_user"]);
-        $purchase->id_libro = (new Libro())->buscar_x_id($purchaseArrayAsociativo["id_libro"]);
-
-        // $genresId = explode(",", $libroArrayAsociativo["genero"]);
-        // $all_genres = [];
-        // if (!empty($genresId[0])) {
-        //     foreach ($genresId as $genreId) {
-        //         $all_genres[] = (new Genero())->buscar_x_nombre(($genreId));
-        //     }
+            // if (isset($purchaseArrayAsociativo[$valor])) {
+                $purchase->{$valor} = $purchaseArrayAsociativo[$valor];
+            }
         // }
+    
+        $purchase->id_user = (new Usuario())->buscar_x_id($purchaseArrayAsociativo["id_user"]);
+        $purchase->librosComprados = [];
+    
+        $librosComprados = explode(",", $purchaseArrayAsociativo["librosComprados"]);
+        $quantityFinales = explode(",", $purchaseArrayAsociativo["cantidadDeLibros"]);
 
-        // $libro->all_genres = $libroArrayAsociativo["genero"];
-        // $libro->genero = $all_genres;
-        return $libro;
+        $suma = 0;
+
+
+for ($i = 0; $i < count($librosComprados); $i++) {
+    $libroId = $librosComprados[$i];
+    $cantidad = intval($quantityFinales[$i]);
+    $suma+=$cantidad;
+    $libro = (new Libro())->buscar_x_id($libroId);
+    
+    // Añadimos el libro y la cantidad correspondiente a librosComprados
+    $purchase->librosComprados[] = ['libro' => $libro, 'cantidad' => $cantidad];
+    
+}
+
+$purchase->quantity= $suma;
+        return $purchase;
     }
+    
+
     public function bringPurchases(int $id_user, int $id_purchase): void
     {
         $conexion = (new Conexion())->getConexion();

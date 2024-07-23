@@ -53,7 +53,7 @@ class Libro
         $all_genres = [];
         if (!empty($genresId[0])) {
             foreach ($genresId as $genreId) {
-                $all_genres[] = (new Genero())->buscar_x_nombre(($genreId));
+                $all_genres[] = (new Genero())->buscar_x_nombre($genreId);
             }
         }
 
