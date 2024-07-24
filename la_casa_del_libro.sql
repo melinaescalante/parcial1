@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-06-2024 a las 01:35:46
+-- Tiempo de generación: 24-07-2024 a las 17:41:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -182,6 +182,31 @@ INSERT INTO `pivotxgeneroxlibro` (`id`, `genero_id`, `libro_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pivotxpurchasesxuser`
+--
+
+CREATE TABLE `pivotxpurchasesxuser` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_user` bigint(20) UNSIGNED NOT NULL,
+  `quantity` int(10) UNSIGNED NOT NULL,
+  `id_libro` bigint(20) UNSIGNED NOT NULL,
+  `price` float UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `order_number` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pivotxpurchasesxuser`
+--
+
+INSERT INTO `pivotxpurchasesxuser` (`id`, `id_user`, `quantity`, `id_libro`, `price`, `date`, `order_number`) VALUES
+(10, 3, 2, 2, 30000, '2023-07-24', 837),
+(11, 3, 2, 3, 75000, '2023-07-23', 4140),
+(12, 3, 1, 5, 75000, '2023-07-24', 4140);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -198,7 +223,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre_completo`, `email`, `password`, `rol`) VALUES
-(3, 'melina escalante', 'admin@gmail.com', '$2y$10$nHTGXLhhcgFG7k8oOJLGx.OqdR/Ib1ejtfYZVln3BXdMkttVJ3WyW', 'admin'),
+(3, 'melina micaela escalante', 'admin@gmail.com', '$2y$10$nHTGXLhhcgFG7k8oOJLGx.OqdR/Ib1ejtfYZVln3BXdMkttVJ3WyW', 'admin'),
 (10, 'Melina Escalante', 'melina@gmail.com', '$2y$10$Fe4lsh16Qqj/O37DdLq72epMASQLWaXMg/Qz8mjOGdn4xL6frZ.TS', 'usuario');
 
 --
@@ -240,6 +265,14 @@ ALTER TABLE `pivotxgeneroxlibro`
   ADD KEY `libro_id` (`libro_id`);
 
 --
+-- Indices de la tabla `pivotxpurchasesxuser`
+--
+ALTER TABLE `pivotxpurchasesxuser`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_libro` (`id_libro`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -271,19 +304,25 @@ ALTER TABLE `genero`
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `pivotxgeneroxlibro`
 --
 ALTER TABLE `pivotxgeneroxlibro`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT de la tabla `pivotxpurchasesxuser`
+--
+ALTER TABLE `pivotxpurchasesxuser`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
@@ -302,6 +341,13 @@ ALTER TABLE `libro`
 ALTER TABLE `pivotxgeneroxlibro`
   ADD CONSTRAINT `pivotxgeneroxlibro_ibfk_1` FOREIGN KEY (`libro_id`) REFERENCES `libro` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pivotxgeneroxlibro_ibfk_2` FOREIGN KEY (`genero_id`) REFERENCES `genero` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pivotxpurchasesxuser`
+--
+ALTER TABLE `pivotxpurchasesxuser`
+  ADD CONSTRAINT `pivotxpurchasesxuser_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `pivotxpurchasesxuser_ibfk_3` FOREIGN KEY (`id_libro`) REFERENCES `libro` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
