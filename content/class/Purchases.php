@@ -16,7 +16,7 @@ class Purchases
         $allPurchases = [];
         $conexion = new Conexion();
         $conn = $conexion->getConexion();
-        $query = 'SELECT pivotxpurchasesxuser.*, usuario.*,GROUP_CONCAT(pivotxpurchasesxuser.id_libro) AS librosComprados,GROUP_CONCAT(pivotxpurchasesxuser.quantity) AS cantidadDeLibros FROM pivotxpurchasesxuser LEFT JOIN libro ON libro.id = pivotxpurchasesxuser.id_libro INNER JOIN usuario ON pivotxpurchasesxuser.id_user = :id GROUP BY usuario.id;';
+        $query = 'SELECT pivotxpurchasesxuser.*, usuario.*,GROUP_CONCAT(pivotxpurchasesxuser.id_libro) AS librosComprados,GROUP_CONCAT(pivotxpurchasesxuser.quantity) AS cantidadDeLibros FROM pivotxpurchasesxuser LEFT JOIN libro ON libro.id = pivotxpurchasesxuser.id_libro INNER JOIN usuario ON pivotxpurchasesxuser.id_user = :id WHERE usuario.id=:id GROUP BY pivotxpurchasesxuser.order_number;';
 
         $PDOStament = $conn->prepare($query);
         $PDOStament->setFetchMode(PDO::FETCH_ASSOC);
