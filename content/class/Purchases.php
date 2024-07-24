@@ -7,8 +7,9 @@ class Purchases
     // protected $id_libro;
     protected $price;
     protected $date;
+    protected $order_number;
     protected $librosComprados;
-    protected static $valoresDB = ["id", "quantity", "price", "date"];
+    protected static $valoresDB = ["id", "quantity", "price", "date","order_number"];
 
     public function compras_x_usuario($id)
     {
@@ -31,37 +32,35 @@ class Purchases
     public function mapear($purchaseArrayAsociativo): Purchases
     {
         $purchase = new self();
-    
+
         foreach (self::$valoresDB as $valor) {
-            // if (isset($purchaseArrayAsociativo[$valor])) {
-                $purchase->{$valor} = $purchaseArrayAsociativo[$valor];
-            }
-        // }
-    
+            $purchase->{$valor} = $purchaseArrayAsociativo[$valor];
+        }
+
         $purchase->id_user = (new Usuario())->buscar_x_id($purchaseArrayAsociativo["id_user"]);
         $purchase->librosComprados = [];
-    
+
         $librosComprados = explode(",", $purchaseArrayAsociativo["librosComprados"]);
         $quantityFinales = explode(",", $purchaseArrayAsociativo["cantidadDeLibros"]);
 
         $suma = 0;
 
 
-for ($i = 0; $i < count($librosComprados); $i++) {
-    $libroId = $librosComprados[$i];
-    $cantidad = intval($quantityFinales[$i]);
-    $suma+=$cantidad;
-    $libro = (new Libro())->buscar_x_id($libroId);
-    
-    // Añadimos el libro y la cantidad correspondiente a librosComprados
-    $purchase->librosComprados[] = ['libro' => $libro, 'cantidad' => $cantidad];
-    
-}
+        for ($i = 0; $i < count($librosComprados); $i++) {
+            $libroId = $librosComprados[$i];
+            $cantidad = intval($quantityFinales[$i]);
+            $suma += $cantidad;
+            $libro = (new Libro())->buscar_x_id($libroId);
 
-$purchase->quantity= $suma;
+
+            $purchase->librosComprados[] = ['libro' => $libro, 'cantidad' => $cantidad];
+
+        }
+
+        $purchase->quantity = $suma;
         return $purchase;
     }
-    
+
 
     public function bringPurchases(int $id_user, int $id_purchase): void
     {
@@ -121,5 +120,13 @@ $purchase->quantity= $suma;
     public function getLibrosComprados()
     {
         return $this->librosComprados;
+    }
+
+    /**
+     * Get the value of order_number
+     */
+    public function getOrderNumber()
+    {
+        return $this->order_number;
     }
 }

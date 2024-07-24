@@ -51,10 +51,11 @@ class Carrito
     {
         $_SESSION["carrito"] = [];
     }
-    public function insert(int $id_user, int $idLibro, int $quantity, float|int $price, $date): void
+    public function insert(int $id_user, int $idLibro, int $quantity, float|int $price, $date,int  $order_number): void
     {
+        
         $conexion = (new Conexion())->getConexion();
-        $query = "INSERT INTO pivotxpurchasesxuser VALUES (NULL,:id_user,:quantity,:idLibro,:price,:date);";
+        $query = "INSERT INTO pivotxpurchasesxuser VALUES (NULL,:id_user,:quantity,:idLibro,:price,:date,:order_number);";
         
         $PDOStament = $conexion->prepare($query);
         $PDOStament->execute([
@@ -62,7 +63,8 @@ class Carrito
             'idLibro' => htmlspecialchars($idLibro),
             'quantity' => htmlspecialchars($quantity),
             'price' => htmlspecialchars($price),
-            'date' => htmlspecialchars($date)
+            'date' => htmlspecialchars($date),
+            'order_number' => htmlspecialchars($order_number),
         ]);
     }
     

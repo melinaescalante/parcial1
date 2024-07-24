@@ -59,13 +59,15 @@ $fecha_actual = date('d-m-y');
             foreach ($carrito as $item) {
                 $libro = (new Libro())->buscar_x_coincidencia($item["titulo"]); ?>
                 <?php foreach ($libro as $key) {
-
+                    
+                    $idRandom= random_int(1,10000);
 
                     ?>
                     <input type="hidden" name="idLibros[]" value=<?= htmlspecialchars($key["codeFound1"]) ?>>
                     <input type="hidden" name="quantity[]" value=<?= htmlspecialchars($item["cantidad"]) ?>>
                     <input type="hidden" name="priceFinal" value=<?= htmlspecialchars($subtotal)?>>
                     <input type="hidden" name="date" value=<?= htmlspecialchars($fecha_actual)?>>
+                    <input type="hidden" name="order_number" value=<?= htmlspecialchars($idRandom)?>>
 
                     <?php
                 }
