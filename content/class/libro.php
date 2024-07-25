@@ -93,43 +93,52 @@ class Libro
 
 
     }
-    public function buscar_x_coincidencia($titulo)
-    {
-        $databookFound = [];
-        $conexion = new Conexion();
-        $conn = $conexion->getConexion();
-        $query = 'SELECT libro.*,GROUP_CONCAT(genero.genero_tipo) AS genero FROM libro LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id JOIN genero on pivotxgeneroxlibro.genero_id= genero.id where libro.nombre like :titulo Group by libro.id';
+    public function buscar_x_coincidencia($titulo, int $initial=1, int $quantity=5)
+{
+    $databookFound = [];
+    $conexion = new Conexion();
+    $conn = $conexion->getConexion();
+    $offset= ($initial-1)* $quantity;
+    echo $offset;
+    $query = "SELECT libro.*, GROUP_CONCAT(genero.genero_tipo) AS genero 
+              FROM libro 
+              LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id 
+              JOIN genero ON pivotxgeneroxlibro.genero_id = genero.id 
+              WHERE libro.nombre LIKE :titulo 
+              GROUP BY libro.id 
+              LIMIT $quantity OFFSET $offset";
 
-        $stmt = $conn->prepare($query);
+    $PDOStament = $conn->prepare($query);
 
-        $tituloConPorcentajes = "%$titulo%";
+    $tituloConPorcentajes = "%$titulo%";
 
-        $stmt->bindParam(':titulo', $tituloConPorcentajes, PDO::PARAM_STR);
-        $stmt->execute();
-        $databook = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $PDOStament->execute([
+        'titulo' =>htmlspecialchars($tituloConPorcentajes) ,
+    ]);
 
-        foreach ($databook as $key) {
+    $databook = $PDOStament->fetchAll(PDO::FETCH_ASSOC);
 
-            $autor = (new Autor())->buscar_x_id($key["autor_id"]);
-            $editorial = (new Editorial())->buscar_x_id($key["editorial_id"]);
+    foreach ($databook as $key) {
+        $autor = (new Autor())->buscar_x_id($key["autor_id"]);
+        $editorial = (new Editorial())->buscar_x_id($key["editorial_id"]);
 
-            $data = [
-                'codeFound1' => $key["id"],
-                'nameFound1' => $key["nombre"],
-                'autorFound1' => $autor->getAutorNombre(),
-                'sinopsisFound1' => $key["sinopsis"],
-                'imgFound1' => $key["portada"],
-                'pagesFound1' => $key["pages"],
-                'priceFound1' => $key["price"],
-                'genreFound1' => $key["genero"],
-                'editorialFound1' => $editorial->getEditorialNombre(),
-            ];
-            array_push($databookFound, $data);
-        }
-
-        return $databookFound;
-
+        $data = [
+            'codeFound1' => $key["id"],
+            'nameFound1' => $key["nombre"],
+            'autorFound1' => $autor->getAutorNombre(),
+            'sinopsisFound1' => $key["sinopsis"],
+            'imgFound1' => $key["portada"],
+            'pagesFound1' => $key["pages"],
+            'priceFound1' => $key["price"],
+            'genreFound1' => $key["genero"],
+            'editorialFound1' => $editorial->getEditorialNombre(),
+        ];
+        array_push($databookFound, $data);
     }
+
+    return $databookFound;
+}
+
     public function buscar_x_id($code)
     {
         $conexion = (new Conexion())->getConexion();

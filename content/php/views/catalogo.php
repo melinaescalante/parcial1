@@ -23,6 +23,8 @@ if ($generoElegido != "") {
                     <input class="form-control me-2" type="search" placeholder="Ingrese titulo" aria-label="Search"
                         id="title" name="title">
                     <input type="hidden" name="view" value="busqueda">
+                    <input type="hidden" name="initial" value="1">
+                    <input type="hidden" name="end" value="5">
                     <input class="btn btn-outline-success" type="submit" value="Buscar">
                 </form>
             </div>
