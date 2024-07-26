@@ -7,28 +7,32 @@ if ($_SESSION["login"]) {
                 <h1 class="text-center mb-5 fw-bold">Mis compras</h1>
                 <?php
     
-                $purchases = (new Purchases())->compras_x_usuario($_SESSION["login"]["id"]);
+                $purchases =array_reverse( (new Purchases())->compras_x_usuario($_SESSION["login"]["id"]));
+              
                 if (!empty($purchases)) {
                    
                     $librosMostrados = []; 
                     $orderShowed=[] ;
                     for ($i = 0; $i < count($purchases); $i++) {
                         $librosComprados = $purchases[$i]->getLibrosComprados();
+                        
                         ?>
                         <div class="card mb-3" style="max-width: 80%;">
                             <?php foreach ($librosComprados as $index=>$libroComprado) {
                                 $borderClass = ($index < count($librosComprados) - 1) ? 'border-bottom separator' : '';
                                 $libro = $libroComprado['libro'];
-                               
                                 $idLibro = $libro->getCode();
-                                $orderNumber=$purchases[$i]->getOrderNumber();                           
-                                if (in_array($idLibro, $librosMostrados) && in_array($orderNumber, $orderShowed)) {
-                                    continue; // Si el libro ya fue mostrado pasa al siguiente
-                                }
-                        
+                                $orderNumber = $purchases[$i]->getOrderNumber();
                                 
-                                $librosMostrados[] = $idLibro;
-                                $orderShowed[] = $orderNumber;
+                                // Almacenamos la combinación de libro y número de orden
+                                $libroYOrden = "$idLibro-$orderNumber";
+                                
+                                if (in_array($libroYOrden, $librosMostrados)) {
+                                    continue; 
+                                }
+                                
+                                $librosMostrados[] = $libroYOrden;
+                           
                                 ?>
                                 <div class="row g-0 <?= $borderClass ?>">
                                     <div class="col-md-4 d-flex align-items-center justify-content-center">

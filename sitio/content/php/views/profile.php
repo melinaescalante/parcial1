@@ -14,7 +14,7 @@ if ($_SESSION["login"]) {
                 <?php
                 ?>
                 <?php 
-                $purchases= (new Purchases())->compras_x_usuario($_SESSION['login']['id']);
+                $purchases=array_reverse((new Purchases())->compras_x_usuario($_SESSION['login']['id'])) ;
                 if ($purchases) {
                     ?><li class="list-group-item"><i  style="color:rgb(89 170 157)" class="fa-solid fa-cart-shopping me-2"></i>Ordenes Activas:<?php 
                     for ($i=0; $i < count($purchases); $i++) { 
