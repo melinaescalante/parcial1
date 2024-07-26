@@ -61,19 +61,6 @@ class Purchases
         return $purchase;
     }
 
-
-    public function bringPurchases(int $id_user, int $id_purchase): void
-    {
-        $conexion = (new Conexion())->getConexion();
-        $query = "INSERT INTO pivotxpurchasesxuser VALUES (NULL, :id_user, :id_libro)";
-        $PDOStament = $conexion->prepare($query);
-        $PDOStament->execute([
-            "id_user" => htmlspecialchars($id_user),
-            "id_purchase" => htmlspecialchars($id_purchase)
-        ]);
-
-    }
-
     public function getId()
     {
         return $this->id;
