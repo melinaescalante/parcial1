@@ -12,7 +12,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mb-lg-0 d-flex justify-content-between w-100">
-          <div class="d-flex flex-md-column flex-sm-column">
+          <div class="d-flex flex-lg-row flex-md-column flex-sm-column">
 
 
             <li class="nav-item">
@@ -37,12 +37,12 @@
               <?php
             } ?>
           </div>
-          <div class="d-flex align-items-center flex-md-column flex-sm-column align-items-md-start align-items-sm-start">
-            <li class="nav-item">
+          <div class="d-flex flex-lg-row align-items-center flex-md-column flex-sm-column align-items-md-start align-items-sm-start">
+            <li class="nav-item align-self-center me-lg-3">
               <a class="nav-link cart" href="index.php?view=carrito">CARRITO</a>
             </li> <?php
             if (!isset($_SESSION["login"])) { ?>
-              <li class="nav-item">
+              <li class="nav-item align-self-center me-lg-3">
                 <a class="nav-link login" href="content/admin/index.php?view=login">INGRESAR</a>
               </li>
 
@@ -50,13 +50,13 @@
               <?php
             } elseif (isset($_SESSION["login"])) {
               ?>
-              <li class="nav-item">
+              <li class="nav-item me-lg-3 align-self-center">
                 <a class="nav-link purchase" href="index.php?view=purchases">MIS COMPRAS</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item me-lg-3 align-self-center">
                 <a class="nav-link login" href="index.php?view=profile">MI PERFIL</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item me-lg-3 align-self-center">
                 <a class="nav-link exit" href="content/admin/action/logout.php">SALIR</a>
               </li>
               <?php
