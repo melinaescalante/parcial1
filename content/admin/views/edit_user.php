@@ -29,7 +29,7 @@ $user = (new Usuario())->buscar_x_id($id);
         </div>
         <div>
 
-            <button type="submit" class="btn btn-primary">Editar Usuario</button>
+            <button type="submit" class="btn btn-primary mt-3 mb-3">Editar Usuario</button>
         </div>
     </div>
 

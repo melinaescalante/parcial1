@@ -15,7 +15,7 @@ if ($generoElegido != "") {
 ?>
 <section class="catalogo">
 
-    <div class="container-fluid container-xxl row row-gap-5 column-gap-5 m-auto  justify-content-center">
+    <div class="container-fluid container-xxl row row-gap-4 column-gap-5 m-auto  justify-content-center">
         <div class="contenedor-head">
             <h1 class="mt-5 mb-4 text-star col-12">Elegí tu libro</h1>
             <div class="form-container">
@@ -29,7 +29,7 @@ if ($generoElegido != "") {
                 </form>
             </div>
         </div>
-        <div class="filtros mt-5 mb-5">
+        <div class="filtros mt-5 mb-4">
             <a class="border-end text-center border-start p-2 " href="index.php?sec=romance&view=catalogo">Romance</a>
             <a class="border-end text-center p-2" href="index.php?sec=drama&view=catalogo
             ">Drama</a>

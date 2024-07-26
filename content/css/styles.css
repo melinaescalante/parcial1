@@ -66,11 +66,9 @@ em {
     display: inline-block !important;
     height: 32px !important;
     width: 32px !important;
-    /* margin-left: 20px; */
-
 }
 .separator{
-    border-color: rgb(16, 96, 96)!important;
+    border-color: rgb(16 96 96 / 46%)!important;
 }
 .login {
     background-image: url(../../images/profile.svg);
@@ -81,8 +79,6 @@ em {
     display: inline-block !important;
     height: 40px !important;
     width: 40px !important;
-    /* margin-left: 20px; */
-
 }
 
 .cart {
@@ -94,7 +90,6 @@ em {
     display: inline-block !important;
     height: 32px !important;
     width: 32px !important;
-    /* margin-left: 20px; */
 }
 
 textarea {

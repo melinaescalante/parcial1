@@ -3,7 +3,7 @@ $view = $_GET["view"];
 if ($view == "busqueda") {
 
   ?>
-  <section class="producto d-flex row container-fluid container-xxl row-gap-5 column-gap-5 m-auto ps-5 pe-5 justify-content-center mb-3">
+  <section class="producto d-flex row container-fluid container-xxl row-gap-5 column-gap-5 m-auto ps-5 pe-5 justify-content-center m-5 mb-3">
   <div class="contenedor-head">
             <h1 class="mt-5 mb-4 text-star col-12">Elegí tu libro</h1>
             <div class="form-container">
@@ -43,11 +43,12 @@ if ($view == "busqueda") {
           <li class="list-group-item fw-semibold">$<?= $libro["priceFound1"] ?> </li>
         </ul>
         <div class="card-body">
-          <a href="index.php?view=producto&title=<?= $libro["nameFound1"] ?>" class="btn btn-outline-primary ">COMPRAR</a>
+          <a href="index.php?view=producto&title=<?= $libro["nameFound1"] ?>&initial=1&end=5" class="btn btn-outline-primary ">COMPRAR</a>
         </div>
       </div>
-
+      
       <?php
+      
     }
     $title=$_GET["title"];
     $end=$_GET["end"];

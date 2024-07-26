@@ -1,5 +1,7 @@
 <?php
 $user = (new Usuario())->buscar_x_id($_SESSION['login']['id']);
+if ($_SESSION["login"]) {
+
 ?>
 <div class="container">
     <div class="container mx-auto row my-5">
@@ -16,6 +18,7 @@ $user = (new Usuario())->buscar_x_id($_SESSION['login']['id']);
                 if ($purchases) {
                     ?><li class="list-group-item"><i  style="color:rgb(89 170 157)" class="fa-solid fa-cart-shopping me-2"></i>Ordenes Activas:<?php 
                     for ($i=0; $i < count($purchases); $i++) { 
+
                         echo "<span class='ms-4' style='display:block'>#". $purchases[$i]->getOrderNumber()."</span>";
                         
                     }
@@ -26,3 +29,7 @@ $user = (new Usuario())->buscar_x_id($_SESSION['login']['id']);
         </div>
     </div>
 </div>
+<?php
+}else {
+    header("Location:index.php");
+}
