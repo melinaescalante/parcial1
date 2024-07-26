@@ -1,0 +1,26 @@
+Carrera: Diseño y Programación Web
+Materia: Programación II
+Cuatrimestre: 3ero
+Año: 2024
+Turno: Mañana 
+Comisión: DWM3AP
+Apellido: Escalante
+Nombre: Melina
+Docente: Víctor Villafañe
+Carácter de entrega: Final
+
+
+Usuarios para ingresar al sitio
+
+Rol ADMIN
+usuario: admin@gmail.com
+contraseña: admin
+
+Rol USUARIO
+usuario: melina@gmail.com
+contraseña: admin
+
+¡¡¡¡¡¡¡¡IMPORTANTE!!!!!!!!!
+
+Aclaraciones de la db:
+Al importarse se debe poner el nombre de la_casa_del_libro

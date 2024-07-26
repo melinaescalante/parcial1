@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-07-2024 a las 17:41:17
+-- Tiempo de generación: 26-07-2024 a las 16:56:32
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -202,7 +202,9 @@ CREATE TABLE `pivotxpurchasesxuser` (
 INSERT INTO `pivotxpurchasesxuser` (`id`, `id_user`, `quantity`, `id_libro`, `price`, `date`, `order_number`) VALUES
 (10, 3, 2, 2, 30000, '2023-07-24', 837),
 (11, 3, 2, 3, 75000, '2023-07-23', 4140),
-(12, 3, 1, 5, 75000, '2023-07-24', 4140);
+(12, 3, 1, 5, 75000, '2023-07-24', 4140),
+(13, 10, 1, 1, 25000, '2025-07-24', 4429),
+(14, 10, 1, 1, 25000, '2025-07-24', 5702);
 
 -- --------------------------------------------------------
 
@@ -223,7 +225,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre_completo`, `email`, `password`, `rol`) VALUES
-(3, 'melina micaela escalante', 'admin@gmail.com', '$2y$10$nHTGXLhhcgFG7k8oOJLGx.OqdR/Ib1ejtfYZVln3BXdMkttVJ3WyW', 'admin'),
+(3, 'melina escalante', 'admin@gmail.com', '$2y$10$nHTGXLhhcgFG7k8oOJLGx.OqdR/Ib1ejtfYZVln3BXdMkttVJ3WyW', 'admin'),
 (10, 'Melina Escalante', 'melina@gmail.com', '$2y$10$Fe4lsh16Qqj/O37DdLq72epMASQLWaXMg/Qz8mjOGdn4xL6frZ.TS', 'usuario');
 
 --
@@ -316,7 +318,7 @@ ALTER TABLE `pivotxgeneroxlibro`
 -- AUTO_INCREMENT de la tabla `pivotxpurchasesxuser`
 --
 ALTER TABLE `pivotxpurchasesxuser`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
