@@ -4,7 +4,6 @@ require_once "../../functions/autoload.php";
 $idLibros=$_POST["idLibros"];
 $quantity=$_POST["quantity"];
 $id_user=$_SESSION["login"]["id"];
-echo $id_user;
 $price=$_POST["priceFinal"];
 $date=$_POST["date"];
 $order_number=$_POST["order_number"];

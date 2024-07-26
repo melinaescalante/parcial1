@@ -21,13 +21,15 @@
                             // print_r($purchases[$i]);
                             // echo "</pre>";
                             $idLibro = $libro->getCode();
+                            $orderNumber=$purchases[$i]->getOrderNumber();
                             // Verificar si el libro ya ha sido mostrado
-                            if (in_array($idLibro, $librosMostrados)) {
+                            if (in_array($idLibro, $librosMostrados) && in_array($orderNumber, $orderShowed)) {
                                 continue; // Si el libro ya fue mostrado, pasa al siguiente
                             }
                     
                             
                             $librosMostrados[] = $idLibro;
+                            $orderShowed[] = $orderNumber;
                             ?>
                             <div class="row g-0 <?= $borderClass ?>">
                                 <div class="col-md-4 d-flex align-items-center justify-content-center">

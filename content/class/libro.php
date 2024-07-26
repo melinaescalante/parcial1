@@ -99,7 +99,6 @@ class Libro
     $conexion = new Conexion();
     $conn = $conexion->getConexion();
     $offset= ($initial-1)* $quantity;
-    echo $offset;
     $query = "SELECT libro.*, GROUP_CONCAT(genero.genero_tipo) AS genero 
               FROM libro 
               LEFT JOIN pivotxgeneroxlibro ON libro.id = pivotxgeneroxlibro.libro_id 

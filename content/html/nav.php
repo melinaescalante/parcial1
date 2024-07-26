@@ -12,7 +12,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mb-lg-0 d-flex justify-content-between w-100">
-          <div class="d-flex">
+          <div class="d-flex flex-md-column flex-sm-column">
 
 
             <li class="nav-item">
@@ -28,7 +28,7 @@
               <a class="nav-link" href="index.php?view=alumna">ALUMNA</a>
             </li>
             <?php
-            if (isset($_SESSION["login"]) && (($_SESSION["login"]["rol"] === "admin"))) {
+            if (isset($_SESSION["login"]) && ($_SESSION["login"]["rol"] === "admin")) {
               ?>
               <li class="nav-item">
                 <a class="nav-link" href="content/admin/index.php?view=DASHBOARD">DASHBOARD</a>
@@ -37,7 +37,7 @@
               <?php
             } ?>
           </div>
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center flex-md-column flex-sm-column align-items-md-start align-items-sm-start">
             <li class="nav-item">
               <a class="nav-link cart" href="index.php?view=carrito">CARRITO</a>
             </li> <?php

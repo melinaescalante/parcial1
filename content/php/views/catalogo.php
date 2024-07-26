@@ -21,11 +21,11 @@ if ($generoElegido != "") {
             <div class="form-container">
                 <form action="index.php" method="GET" class="d-flex col-11 col-md-6 col-lg-4" role="search">
                     <input class="form-control me-2" type="search" placeholder="Ingrese titulo" aria-label="Search"
-                        id="title" name="title">
+                        id="title" name="title" required>
                     <input type="hidden" name="view" value="busqueda">
                     <input type="hidden" name="initial" value="1">
                     <input type="hidden" name="end" value="5">
-                    <input class="btn btn-outline-success" type="submit" value="Buscar">
+                    <input style="max-width: 30%;" class="btn btn-outline-primary" type="submit" value="Buscar">
                 </form>
             </div>
         </div>
@@ -54,7 +54,7 @@ if ($generoElegido != "") {
                     <li class="list-group-item fw-semibold">$<?= $value->getPrice(); ?> </li>
                 </ul>
                 <div class="card-body">
-                    <a href="index.php?view=producto&title=<?= $value->getNombre() ?>"
+                    <a href="index.php?view=producto&title=<?= $value->getNombre() ?>&initial=1&end=5"
                         class="btn btn-outline-primary ">COMPRAR</a>
                 </div>
             </div>

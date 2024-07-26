@@ -3,7 +3,7 @@ $view = $_GET["view"];
 if ($view == "busqueda") {
 
   ?>
-  <section class="producto d-flex row container-fluid container-xxl row-gap-5 column-gap-5 m-auto ps-5 pe-5 justify-content-center">
+  <section class="producto d-flex row container-fluid container-xxl row-gap-5 column-gap-5 m-auto ps-5 pe-5 justify-content-center mb-3">
   <div class="contenedor-head">
             <h1 class="mt-5 mb-4 text-star col-12">Elegí tu libro</h1>
             <div class="form-container">
@@ -13,7 +13,7 @@ if ($view == "busqueda") {
                     <input type="hidden" name="view" value="busqueda">
                     <input type="hidden" name="initial" value="1">
                     <input type="hidden" name="end" value="5">
-                    <input class="btn btn-outline-success" type="submit" value="Buscar">
+                    <input style="max-width: 30%;" class="btn btn-outline-primary" type="submit" value="Buscar">
                 </form>
             </div>
         </div>
@@ -52,9 +52,16 @@ if ($view == "busqueda") {
     $title=$_GET["title"];
     $end=$_GET["end"];
     $initial=$_GET["initial"]+1;
-    echo $title, $end, $initial;
+  
+   
+    if (count((new Libro())->buscar_x_coincidencia($title, $initial, $end))>1) {
+
+      ?>
+    <div class="d-flex justify-content-center align-items-center mb-3"><a style="max-width:30%;" class="btn btn-primary" href='index.php?title=<?=$title?>&view=busqueda&initial=<?=$initial?>&end=<?=$end?>'> Ver Más</a></div>
+    <?php
+    }
 ?>
-<div class="d-flex justify-content-center align-items-center mb-3"><a style="max-width:30%;" class="btn btn-primary" href='index.php?title=<?=$title?>&view=busqueda&initial=<?=$initial?>&end=<?=$end?>'> Ver Más</a></div><?php
+<?php
 }
 
 ?>
@@ -65,7 +72,7 @@ if(!$bookFound){
   ?>
   <section class="producto">
   
-    <div class="alert alert-warning m-5" role="alert">
+    <div class="alert alert-warning m-5 mt-2" role="alert">
   
       <p> No coincide ni un ID con su busqueda. Lo lamentamos</p>
     </div>
